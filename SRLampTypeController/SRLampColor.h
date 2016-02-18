@@ -12,7 +12,11 @@
 /// 灯的颜色类
 @interface SRLampColor : NSObject
 
-/// RGB Color
+/**
+ * @param HSV(struct)
+ * @param RGB(struct)
+ * @param color(UIColor)
+ */
 @property (strong, nonatomic) SRColor *color;
 
 /// 0 ~ 100 白灯, default is @(100)

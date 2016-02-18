@@ -23,6 +23,8 @@
 
     _slider.delegate = self;
     _controlView.delegate = self;
+    
+    self.view.backgroundColor = _controlView.lampColor.color.color;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -52,6 +54,7 @@
 - (void)lampTypeControlView:(SRLampTypeControlView *)view didRGBChanged:(SRLampColor *)lampColor {
     
     [_slider setColor:lampColor.color];
+    self.view.backgroundColor = lampColor.color.color;
 }
 
 @end

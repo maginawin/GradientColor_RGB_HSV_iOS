@@ -41,19 +41,7 @@
 }
 
 // 更改饱和度与明度
-- (void)updateSaturation:(CGFloat)saturation value:(CGFloat)value {
-    if (saturation < 0) {
-        saturation = 0;
-    } else if (saturation > 1) {
-        saturation = 1;
-    }
-    
-    if (value < 0) {
-        value = 0;
-    } else if (value > 1) {
-        value = 1;
-    }
-    
+- (void)updateSaturation:(CGFloat)saturation value:(CGFloat)value {    
     _saturation = saturation;
     _value = value;
     
