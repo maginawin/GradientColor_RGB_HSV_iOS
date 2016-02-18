@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A454E3DF1C756A420002A436 /* color_bar_warm_cold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454E3DD1C756A420002A436 /* color_bar_warm_cold@2x.png */; };
+		A454E3E01C756A420002A436 /* color_bar_warm_cold@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454E3DE1C756A420002A436 /* color_bar_warm_cold@3x.png */; };
+		A454E3E61C7573500002A436 /* ColorPickerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A454E3E51C7573500002A436 /* ColorPickerImageView.m */; };
 		A4A233CC1C5DA0F300B798E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A233CB1C5DA0F300B798E5 /* main.m */; };
 		A4A233CF1C5DA0F300B798E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A233CE1C5DA0F300B798E5 /* AppDelegate.m */; };
 		A4A233D21C5DA0F300B798E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A233D11C5DA0F300B798E5 /* ViewController.m */; };
@@ -43,6 +46,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A454E3DD1C756A420002A436 /* color_bar_warm_cold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar_warm_cold@2x.png"; sourceTree = "<group>"; };
+		A454E3DE1C756A420002A436 /* color_bar_warm_cold@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar_warm_cold@3x.png"; sourceTree = "<group>"; };
+		A454E3E41C7573500002A436 /* ColorPickerImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerImageView.h; sourceTree = "<group>"; };
+		A454E3E51C7573500002A436 /* ColorPickerImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerImageView.m; sourceTree = "<group>"; };
 		A4A233C71C5DA0F300B798E5 /* SRLampTypeController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SRLampTypeController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A233CB1C5DA0F300B798E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A4A233CD1C5DA0F300B798E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -145,6 +152,8 @@
 		A4A233E11C5DA10700B798E5 /* LampTypeControlView */ = {
 			isa = PBXGroup;
 			children = (
+				A454E3E41C7573500002A436 /* ColorPickerImageView.h */,
+				A454E3E51C7573500002A436 /* ColorPickerImageView.m */,
 				A4A2340A1C5DEB4F00B798E5 /* Images for control view */,
 				A4FF0F701C72F9E200845CB3 /* SRColor.h */,
 				A4FF0F711C72F9E200845CB3 /* SRColor.m */,
@@ -172,6 +181,8 @@
 		A4A2340A1C5DEB4F00B798E5 /* Images for control view */ = {
 			isa = PBXGroup;
 			children = (
+				A454E3DD1C756A420002A436 /* color_bar_warm_cold@2x.png */,
+				A454E3DE1C756A420002A436 /* color_bar_warm_cold@3x.png */,
 				A4FF0F681C72F90800845CB3 /* color_bar_control@2x.png */,
 				A4FF0F691C72F90800845CB3 /* color_bar_control@3x.png */,
 				A4FF0F6A1C72F90800845CB3 /* color_bar@2x.png */,
@@ -257,7 +268,9 @@
 				A4FF0F6E1C72F90800845CB3 /* color_bar@2x.png in Resources */,
 				A4A233DA1C5DA0F300B798E5 /* LaunchScreen.storyboard in Resources */,
 				A4A233F91C5DE9B700B798E5 /* color_red.png in Resources */,
+				A454E3DF1C756A420002A436 /* color_bar_warm_cold@2x.png in Resources */,
 				A4A234071C5DEB4200B798E5 /* thumb_green@3x.png in Resources */,
+				A454E3E01C756A420002A436 /* color_bar_warm_cold@3x.png in Resources */,
 				A4A234101C5DF0CA00B798E5 /* color_white.png in Resources */,
 				A4FF0F671C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.xib in Resources */,
 				A4A233D71C5DA0F300B798E5 /* Assets.xcassets in Resources */,
@@ -281,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A454E3E61C7573500002A436 /* ColorPickerImageView.m in Sources */,
 				A4A233EC1C5DB11B00B798E5 /* SRLampTypeControlColorCell.m in Sources */,
 				A4C200891C74541C00EA4C5B /* SRColorGradient.m in Sources */,
 				A4A233D21C5DA0F300B798E5 /* ViewController.m in Sources */,
@@ -403,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SRLampTypeController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -415,6 +430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SRLampTypeController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

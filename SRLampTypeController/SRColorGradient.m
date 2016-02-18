@@ -8,13 +8,18 @@
 
 #import "SRColorGradient.h"
 #import "SRColor.h"
+#import "ColorPickerImageView.h"
 
 @interface SRColorGradient ()
 
 /// 7 个颜色，红、黄、绿、青、蓝、品红、红，只是他们的 saturation 与 value 相同且与正常的颜色不同
 @property (strong, nonatomic) NSMutableArray<SRColor *> *colors;
 
+/// Multicolour 的渐变条
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
+
+/// WarmCold 的渐变条
+@property (strong, nonatomic) ColorPickerImageView *warmColdImageView;
 
 @end
 
@@ -40,6 +45,29 @@
     [self setupDidInit];
 }
 
+- (void)setType:(SRColorGradientType)type {
+    _type = type;
+    
+    switch (_type) {
+        case SRColorGradientTypeMulticolour: {
+            [UIView animateWithDuration:.25f animations:^ {
+                _gradientLayer.hidden = NO;
+                _warmColdImageView.hidden = YES;
+            }];
+        
+            break;
+        }
+        case SRColorGradientTypeWarmCold: {
+            [UIView animateWithDuration:.25f animations:^ {
+                _gradientLayer.hidden = YES;
+                _warmColdImageView.hidden = NO;
+            }];
+        
+            break;
+        }
+    }
+}
+
 // 更改饱和度与明度
 - (void)updateSaturation:(CGFloat)saturation value:(CGFloat)value {    
     _saturation = saturation;
@@ -58,6 +86,17 @@
     [self setNeedsDisplay];
 }
 
+- (UIColor *)colorFromHueValue:(CGFloat)hue {
+    UIColor *result = [UIColor whiteColor];
+    
+    CGFloat width = CGRectGetWidth(self.bounds);
+    CGFloat x = hue * width * [UIScreen mainScreen].scale / 360.f;
+    
+    result = [_warmColdImageView getPixelColorAtLocation:CGPointMake(x, CGRectGetHeight(self.bounds) / 2)];
+    
+    return result;
+}
+
 - (void)drawRect:(CGRect)rect {
     
     [self setupGradientLayer];
@@ -66,6 +105,7 @@
 #pragma mark - ------- Private ------- 
 
 - (void)setupDidInit {
+    // Setup Multicolour Bar's colors
     if (!_colors) {
         _colors = [NSMutableArray array];
     }
@@ -87,6 +127,40 @@
     
     _saturation = 1;
     _value = 1;
+    
+    // Multicolour Bar Init
+    if (!_gradientLayer) {
+        CAGradientLayer *layer = [CAGradientLayer layer];
+        
+        CGPoint start = CGPointMake(0, 0.5);
+        CGPoint end = CGPointMake(1, 0.5);
+        NSArray *locations = @[@0, @(1/6.f), @(1/3.f), @(1/2.f), @(2/3.f), @(5/6.f), @1];
+        
+        layer.startPoint = start;
+        layer.endPoint = end;
+        layer.locations = locations;
+        
+        _gradientLayer = layer;
+        
+        [self.layer addSublayer:_gradientLayer];
+    }
+    
+    // WarmColdImageView Init
+    if (!_warmColdImageView) {
+        _warmColdImageView = [[ColorPickerImageView alloc] init];
+        _warmColdImageView.image = [UIImage imageNamed:@"color_bar_warm_cold"];
+        _warmColdImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        _warmColdImageView.contentMode = UIViewContentModeScaleToFill;
+        [self addSubview:_warmColdImageView];
+        // Constraints
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_warmColdImageView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_warmColdImageView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_warmColdImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_warmColdImageView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    }
+    
+    // 默认的类型设为多色
+    [self setType:SRColorGradientTypeWarmCold];
 }
 
 - (void)setupGradientLayer {

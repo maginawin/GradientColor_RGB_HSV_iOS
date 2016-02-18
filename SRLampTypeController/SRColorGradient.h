@@ -30,10 +30,17 @@ typedef NS_ENUM(NSInteger, SRColorGradientType) {
 @property (nonatomic, readonly) CGFloat value;
 
 /**
- * @brief 更改 saturation 与 value
+ * @brief 更改 saturation 与 value，仅当 type == SRColorGradientTypeWarmCold 时有效
  * @param saturation [0, 1] 饱和度
  * @param value [0, 1] 明度
  */
 - (void)updateSaturation:(CGFloat)saturation value:(CGFloat)value;
+
+/**
+ * @brief 当 type 为 WarmCold 时，需要传入 hue 来取得 UIColor
+ * @param hue[0, 360) 在 HSV 中的 hue，也作为 SRColorSlider 的 currentValue
+ * @return 当前 currentValue 的颜色（UIColor）
+ */
+- (UIColor *)colorFromHueValue:(CGFloat)hue;
 
 @end

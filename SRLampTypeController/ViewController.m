@@ -34,7 +34,7 @@
 }
 
 - (IBAction)typeChangedClicked:(id)sender {
-    int tag = [sender tag];
+    int tag = (int)[sender tag];
     
     _controlView.controlViewType = tag + 1;
 }

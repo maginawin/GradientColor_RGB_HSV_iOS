@@ -9,6 +9,7 @@
 #import "SRColorSlider.h"
 #import "SRColor.h"
 #import "SRColorGradient.h"
+#import "ColorPickerImageView.h"
 
 @interface SRColorSlider ()
 
@@ -16,7 +17,7 @@
 @property (strong, nonatomic) SRColorGradient *colorImageView;
 
 /// 拔动按钮
-@property (strong, nonatomic) UIImageView *thumbButton;
+@property (strong, nonatomic) ColorPickerImageView *thumbButton;
 
 /// 拔动按钮与左边的约束, default is 0 and Max is (self.width - SRColorSliderMargin * 2)
 @property (strong, nonatomic) NSLayoutConstraint *thumbButtonLeftConstraint;
@@ -110,7 +111,7 @@
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_colorImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1. constant:13]];
     
     // Thumb Button
-    _thumbButton = [[UIImageView alloc] init];
+    _thumbButton = [[ColorPickerImageView alloc] init];
     _thumbButton.translatesAutoresizingMaskIntoConstraints = NO;
     _thumbButton.userInteractionEnabled = YES;
     [self addSubview:_thumbButton];
@@ -166,6 +167,19 @@
             _color.HSV = hsv;
             
             if ([_delegate respondsToSelector:@selector(colorSlider:didColorChanged:)]) {
+                
+                switch (_colorImageView.type) {
+                    case SRColorGradientTypeMulticolour: {
+                        
+                        break;
+                    }
+                    case SRColorGradientTypeWarmCold: {
+                        _color.color = [_colorImageView colorFromHueValue:_color.HSV.hue];
+                        
+                        break;
+                    }
+                }
+                
                 [_delegate colorSlider:self didColorChanged:_color];
             }
             

@@ -146,7 +146,7 @@
 //        rgb.blue = 0;
 //    } else
     CGFloat HRadius = hsv.hue / 60.f;
-    NSLog(@"hue %.2f hradius %.2f", hsv.hue, HRadius);
+
     CGFloat X = C * (1 - fabs(fmod(HRadius, 2) - 1.f));
     
     CGFloat r1 = 0;
@@ -182,8 +182,6 @@
     rgb.red *= 255.f;
     rgb.green *= 255.f;
     rgb.blue *= 255.f;
-    
-    NSLog(@"r %d, g %d, b %d, radius %.2f", rgb.red, rgb.green, rgb.blue, HRadius);
     
     return rgb;
 }
