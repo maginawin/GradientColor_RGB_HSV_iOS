@@ -9,11 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "SRLampTypeControlColorCell.h"
 #import "SRLampTypeControlWBCell.h"
+#import "SRLampTypeControlWarmColdcell.h"
+#import "SRLampTypeControlMulticolourCell.h"
 #import "SRLampColor.h"
 
 @class SRLampTypeControlView;
 
-/// 灯控制视图的类型
+/**
+ * @brief 灯控制的类型
+ * @param SRLampTypeControlViewTypeNONE 0
+ * @param SRLampTypeControlViewTypeRGBW 1
+ * @param SRLampTypeControlViewTypeRGB 2
+ * @param SRLampTypeControlViewTypeCCT 3
+ * @param SRLampTypeControlViewTypeDIM 4
+ */
 typedef NS_ENUM(NSInteger, SRLampTypeControlViewType) {
     SRLampTypeControlViewTypeNONE = 0, //!< No type selected
     SRLampTypeControlViewTypeRGBW = 1, //!< RGB and White、Brightness
@@ -26,11 +35,13 @@ typedef NS_ENUM(NSInteger, SRLampTypeControlViewType) {
 
 @optional
 
-/// Section0 区域改变 lampColor
-- (void)lampTypeControlView:(SRLampTypeControlView *)view didSliderChanged:(SRLampColor *)lampColor;
+- (void)lampTypeControlView:(SRLampTypeControlView *)view didLampColorChanged:(SRLampColor *)lampColor;
 
-/// Section1(RGB) 区域改变 lampColor
-- (void)lampTypeControlView:(SRLampTypeControlView *)view didRGBChanged:(SRLampColor *)lampColor;
+///// Section0 区域改变 lampColor
+//- (void)lampTypeControlView:(SRLampTypeControlView *)view didSliderChanged:(SRLampColor *)lampColor;
+//
+///// Section1(RGB) 区域改变 lampColor
+//- (void)lampTypeControlView:(SRLampTypeControlView *)view didRGBChanged:(SRLampColor *)lampColor;
 
 @end
 

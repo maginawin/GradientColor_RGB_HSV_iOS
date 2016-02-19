@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SRLampColor;
+#import "SRColorSlider.h"
+#import "SRLampColor.h"
+
 @class SRLampTypeControlMulticolourCell;
+
+#define SRLampTypeControlMulticolourCellIdentifier @"multicolourCellIdentifier"
 
 @protocol SRLampTypeControlMulticolourCellDelegate <NSObject>
 
@@ -32,6 +36,12 @@
 
 /// Only use Red, Green, Blue properties.
 @property (strong, nonatomic) SRLampColor *lampColor;
+
+/// 开始 / 暂停按钮，selected 开始，反之 暂停
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+
+/// 变色进度条
+@property (weak, nonatomic) IBOutlet SRColorSlider *colorSlider;
 
 /// @return multicolour cell instance.
 + (instancetype)lampTypeControlMulticolourCell;

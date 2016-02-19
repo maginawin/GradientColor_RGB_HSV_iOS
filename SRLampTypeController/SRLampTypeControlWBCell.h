@@ -21,7 +21,7 @@
 
 @optional
 
-- (void)lampTypeControlColorCell:(SRLampTypeControlWBCell *)cell didValueChanged:(NSNumber *)value;
+- (void)lampTypeControlWBCell:(SRLampTypeControlWBCell *)cell didValueChanged:(NSNumber *)value;
 
 @end
 

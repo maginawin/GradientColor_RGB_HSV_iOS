@@ -13,7 +13,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _HSV.hue = 0;
+        _HSV.hue = 180;
         _HSV.saturation = 1;
         _HSV.value = 1;
         

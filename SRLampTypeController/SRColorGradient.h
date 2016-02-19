@@ -7,21 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SRColor;
-
-/**
- * @prarm Multicolour 彩色
- * @prarm WarmCold 冷暖色
- */
-typedef NS_ENUM(NSInteger, SRColorGradientType) {
-    SRColorGradientTypeMulticolour = 0,
-    SRColorGradientTypeWarmCold
-};
+#import "SRColor.h"
 
 @interface SRColorGradient : UIView
-
-/// Gradient type， default is SRColorGradientTypeMulticolour
-@property (nonatomic) SRColorGradientType type;
 
 /// [0, 1] 饱和度，当 RGB 改变时需要更改 saturation, default is 1
 @property (nonatomic, readonly) CGFloat saturation;
@@ -35,12 +23,5 @@ typedef NS_ENUM(NSInteger, SRColorGradientType) {
  * @param value [0, 1] 明度
  */
 - (void)updateSaturation:(CGFloat)saturation value:(CGFloat)value;
-
-/**
- * @brief 当 type 为 WarmCold 时，需要传入 hue 来取得 UIColor
- * @param hue[0, 360) 在 HSV 中的 hue，也作为 SRColorSlider 的 currentValue
- * @return 当前 currentValue 的颜色（UIColor）
- */
-- (UIColor *)colorFromHueValue:(CGFloat)hue;
 
 @end

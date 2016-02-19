@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-
 @interface ColorPickerImageView : UIImageView {
 	UIColor* lastColor;
 	id pickedColorDelegate;
@@ -22,5 +20,6 @@
 - (UIColor*) getPixelColorAtLocation:(CGPoint)point;
 - (CGContextRef) createARGBBitmapContextFromImage:(CGImageRef)inImage;
 
+- (UIColor *)colorFromHueValue:(CGFloat)hue;
 
 @end

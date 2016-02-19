@@ -30,30 +30,34 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    // 切换前随机变个色儿
+    SRLampColor *lampColor = [[SRLampColor alloc] init];
+    CGFloat hue = arc4random_uniform(360);
+    SRColorHSV hsv = lampColor.color.HSV;
+    hsv.hue = hue;
+    lampColor.color.HSV = hsv;
+    
+    _controlView.lampColor = lampColor;
+    
     _controlView.controlViewType = SRLampTypeControlViewTypeRGBW;
 }
 
 - (IBAction)typeChangedClicked:(id)sender {
     int tag = (int)[sender tag];
     
+    // 切换前随机变个色儿
+    SRLampColor *lampColor = [[SRLampColor alloc] init];
+    CGFloat hue = arc4random_uniform(360);
+    SRColorHSV hsv = lampColor.color.HSV;
+    hsv.hue = hue;
+    lampColor.color.HSV = hsv;
+    
+    _controlView.lampColor = lampColor;
+    
     _controlView.controlViewType = tag + 1;
 }
 
-- (void)colorSlider:(SRColorSlider *)slider didColorChanged:(SRColor *)color {
-    
-    dispatch_async(dispatch_get_main_queue(), ^ {
-        self.view.backgroundColor = color.color;
-        
-        _controlView.lampColor.color = color.copy;
-        
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:1];
-        [_controlView.controlTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-    });
-}
-
-- (void)lampTypeControlView:(SRLampTypeControlView *)view didRGBChanged:(SRLampColor *)lampColor {
-    
-    [_slider setColor:lampColor.color];
+- (void)lampTypeControlView:(SRLampTypeControlView *)view didLampColorChanged:(SRLampColor *)lampColor {
     self.view.backgroundColor = lampColor.color.color;
 }
 

@@ -7,18 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SRColor;
+#import "SRColorGradient.h"
+#import "ColorPickerImageView.h"
+
 @class SRColorSlider;
 
-#define SRColorSliderMargin (11.f)
+#define SRColorSliderMargin (20.f)
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, SRColorType) {
-    SRColorTypeNone = 0, //!< 未初始化，无背景图，无颜色值返回
-    SRColorTypeMulticolour = 1, //!< 彩色类型
-    SRColorTypeWarmCold = 2 //!< 冷暖色类型
-};
 
 @protocol SRColorSliderDelegate <NSObject>
 
@@ -35,8 +31,18 @@ typedef NS_ENUM(NSInteger, SRColorType) {
 ///  进度条的值，以 Color 对象来保存
 @property (strong, nonatomic) SRColor *color;
 
-/// 颜色类型，有彩色与冷暖色两种
-@property (nonatomic) SRColorType colorType;
+/// 渐变背景视图
+@property (strong, nonatomic) SRColorGradient *colorImageView;
+
+/// 拔动按钮
+@property (strong, nonatomic) ColorPickerImageView *thumbButton;
+
+/// 拔动按钮与左边的约束, default is 0 and Max is (self.width - SRColorSliderMargin * 2)
+@property (strong, nonatomic) NSLayoutConstraint *thumbButtonLeftConstraint;
+
+- (void)handleThumbButtonGestureRecognizer:(UIGestureRecognizer *)recognizer;
+
+- (void)setupDidInit;
 
 @end
 

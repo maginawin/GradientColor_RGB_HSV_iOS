@@ -87,8 +87,8 @@
     _value = @(value);
     _valueLabel.text = _value.stringValue;
     
-    if ([_delegate respondsToSelector:@selector(lampTypeControlColorCell:didValueChanged:)]) {
-        [_delegate lampTypeControlColorCell:self didValueChanged:_value];
+    if ([_delegate respondsToSelector:@selector(lampTypeControlWBCell:didValueChanged:)]) {
+        [_delegate lampTypeControlWBCell:self didValueChanged:_value];
     }
 }
 

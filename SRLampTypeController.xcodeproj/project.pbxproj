@@ -10,6 +10,9 @@
 		A454E3DF1C756A420002A436 /* color_bar_warm_cold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454E3DD1C756A420002A436 /* color_bar_warm_cold@2x.png */; };
 		A454E3E01C756A420002A436 /* color_bar_warm_cold@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454E3DE1C756A420002A436 /* color_bar_warm_cold@3x.png */; };
 		A454E3E61C7573500002A436 /* ColorPickerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A454E3E51C7573500002A436 /* ColorPickerImageView.m */; };
+		A454E3EA1C75C6D00002A436 /* SRLampTypeControlWarmColdcell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454E3E81C75C6D00002A436 /* SRLampTypeControlWarmColdcell.m */; };
+		A454E3EB1C75C6D00002A436 /* SRLampTypeControlWarmColdcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454E3E91C75C6D00002A436 /* SRLampTypeControlWarmColdcell.xib */; };
+		A454E3EE1C75C7010002A436 /* SRWarmColdSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = A454E3ED1C75C7010002A436 /* SRWarmColdSlider.m */; };
 		A4A233CC1C5DA0F300B798E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A233CB1C5DA0F300B798E5 /* main.m */; };
 		A4A233CF1C5DA0F300B798E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A233CE1C5DA0F300B798E5 /* AppDelegate.m */; };
 		A4A233D21C5DA0F300B798E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A233D11C5DA0F300B798E5 /* ViewController.m */; };
@@ -34,11 +37,12 @@
 		A4A234141C5DF0D300B798E5 /* thumb_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A234121C5DF0D300B798E5 /* thumb_white@3x.png */; };
 		A4A234181C5DF13300B798E5 /* SRLampTypeControlWBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A234161C5DF13300B798E5 /* SRLampTypeControlWBCell.m */; };
 		A4A234191C5DF13300B798E5 /* SRLampTypeControlWBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A234171C5DF13300B798E5 /* SRLampTypeControlWBCell.xib */; };
+		A4AA24F11C76A63F0006F130 /* SRWarmColdView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AA24F01C76A63F0006F130 /* SRWarmColdView.m */; };
+		A4AA24F41C76C9AD0006F130 /* color_bar_control@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4AA24F21C76C9AD0006F130 /* color_bar_control@2x.png */; };
+		A4AA24F51C76C9AD0006F130 /* color_bar_control@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4AA24F31C76C9AD0006F130 /* color_bar_control@3x.png */; };
 		A4C200891C74541C00EA4C5B /* SRColorGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C200881C74541C00EA4C5B /* SRColorGradient.m */; };
 		A4FF0F661C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF0F641C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.m */; };
 		A4FF0F671C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4FF0F651C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.xib */; };
-		A4FF0F6C1C72F90800845CB3 /* color_bar_control@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FF0F681C72F90800845CB3 /* color_bar_control@2x.png */; };
-		A4FF0F6D1C72F90800845CB3 /* color_bar_control@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FF0F691C72F90800845CB3 /* color_bar_control@3x.png */; };
 		A4FF0F6E1C72F90800845CB3 /* color_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FF0F6A1C72F90800845CB3 /* color_bar@2x.png */; };
 		A4FF0F6F1C72F90800845CB3 /* color_bar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FF0F6B1C72F90800845CB3 /* color_bar@3x.png */; };
 		A4FF0F721C72F9E200845CB3 /* SRColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A4FF0F711C72F9E200845CB3 /* SRColor.m */; };
@@ -50,6 +54,11 @@
 		A454E3DE1C756A420002A436 /* color_bar_warm_cold@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar_warm_cold@3x.png"; sourceTree = "<group>"; };
 		A454E3E41C7573500002A436 /* ColorPickerImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerImageView.h; sourceTree = "<group>"; };
 		A454E3E51C7573500002A436 /* ColorPickerImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerImageView.m; sourceTree = "<group>"; };
+		A454E3E71C75C6D00002A436 /* SRLampTypeControlWarmColdcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRLampTypeControlWarmColdcell.h; sourceTree = "<group>"; };
+		A454E3E81C75C6D00002A436 /* SRLampTypeControlWarmColdcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRLampTypeControlWarmColdcell.m; sourceTree = "<group>"; };
+		A454E3E91C75C6D00002A436 /* SRLampTypeControlWarmColdcell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRLampTypeControlWarmColdcell.xib; sourceTree = "<group>"; };
+		A454E3EC1C75C7010002A436 /* SRWarmColdSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWarmColdSlider.h; sourceTree = "<group>"; };
+		A454E3ED1C75C7010002A436 /* SRWarmColdSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWarmColdSlider.m; sourceTree = "<group>"; };
 		A4A233C71C5DA0F300B798E5 /* SRLampTypeController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SRLampTypeController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A233CB1C5DA0F300B798E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A4A233CD1C5DA0F300B798E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -82,13 +91,15 @@
 		A4A234151C5DF13300B798E5 /* SRLampTypeControlWBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRLampTypeControlWBCell.h; sourceTree = "<group>"; };
 		A4A234161C5DF13300B798E5 /* SRLampTypeControlWBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRLampTypeControlWBCell.m; sourceTree = "<group>"; };
 		A4A234171C5DF13300B798E5 /* SRLampTypeControlWBCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRLampTypeControlWBCell.xib; sourceTree = "<group>"; };
+		A4AA24EF1C76A63F0006F130 /* SRWarmColdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWarmColdView.h; sourceTree = "<group>"; };
+		A4AA24F01C76A63F0006F130 /* SRWarmColdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWarmColdView.m; sourceTree = "<group>"; };
+		A4AA24F21C76C9AD0006F130 /* color_bar_control@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar_control@2x.png"; sourceTree = "<group>"; };
+		A4AA24F31C76C9AD0006F130 /* color_bar_control@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar_control@3x.png"; sourceTree = "<group>"; };
 		A4C200871C74541C00EA4C5B /* SRColorGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRColorGradient.h; sourceTree = "<group>"; };
 		A4C200881C74541C00EA4C5B /* SRColorGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRColorGradient.m; sourceTree = "<group>"; };
 		A4FF0F631C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRLampTypeControlMulticolourCell.h; sourceTree = "<group>"; };
 		A4FF0F641C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRLampTypeControlMulticolourCell.m; sourceTree = "<group>"; };
 		A4FF0F651C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRLampTypeControlMulticolourCell.xib; sourceTree = "<group>"; };
-		A4FF0F681C72F90800845CB3 /* color_bar_control@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar_control@2x.png"; sourceTree = "<group>"; };
-		A4FF0F691C72F90800845CB3 /* color_bar_control@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar_control@3x.png"; sourceTree = "<group>"; };
 		A4FF0F6A1C72F90800845CB3 /* color_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar@2x.png"; sourceTree = "<group>"; };
 		A4FF0F6B1C72F90800845CB3 /* color_bar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar@3x.png"; sourceTree = "<group>"; };
 		A4FF0F701C72F9E200845CB3 /* SRColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRColor.h; sourceTree = "<group>"; };
@@ -152,17 +163,21 @@
 		A4A233E11C5DA10700B798E5 /* LampTypeControlView */ = {
 			isa = PBXGroup;
 			children = (
-				A454E3E41C7573500002A436 /* ColorPickerImageView.h */,
-				A454E3E51C7573500002A436 /* ColorPickerImageView.m */,
 				A4A2340A1C5DEB4F00B798E5 /* Images for control view */,
 				A4FF0F701C72F9E200845CB3 /* SRColor.h */,
 				A4FF0F711C72F9E200845CB3 /* SRColor.m */,
 				A4C200871C74541C00EA4C5B /* SRColorGradient.h */,
 				A4C200881C74541C00EA4C5B /* SRColorGradient.m */,
+				A4AA24EF1C76A63F0006F130 /* SRWarmColdView.h */,
+				A4AA24F01C76A63F0006F130 /* SRWarmColdView.m */,
 				A4FF0F731C72FA6500845CB3 /* SRColorSlider.h */,
 				A4FF0F741C72FA6500845CB3 /* SRColorSlider.m */,
+				A454E3EC1C75C7010002A436 /* SRWarmColdSlider.h */,
+				A454E3ED1C75C7010002A436 /* SRWarmColdSlider.m */,
 				A4A233E61C5DB02500B798E5 /* SRLampColor.h */,
 				A4A233E71C5DB02500B798E5 /* SRLampColor.m */,
+				A454E3E41C7573500002A436 /* ColorPickerImageView.h */,
+				A454E3E51C7573500002A436 /* ColorPickerImageView.m */,
 				A4A233E91C5DB11B00B798E5 /* SRLampTypeControlColorCell.h */,
 				A4A233EA1C5DB11B00B798E5 /* SRLampTypeControlColorCell.m */,
 				A4A233EB1C5DB11B00B798E5 /* SRLampTypeControlColorCell.xib */,
@@ -172,6 +187,9 @@
 				A4FF0F631C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.h */,
 				A4FF0F641C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.m */,
 				A4FF0F651C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.xib */,
+				A454E3E71C75C6D00002A436 /* SRLampTypeControlWarmColdcell.h */,
+				A454E3E81C75C6D00002A436 /* SRLampTypeControlWarmColdcell.m */,
+				A454E3E91C75C6D00002A436 /* SRLampTypeControlWarmColdcell.xib */,
 				A4A233E21C5DA13000B798E5 /* SRLampTypeControlView.h */,
 				A4A233E31C5DA13000B798E5 /* SRLampTypeControlView.m */,
 			);
@@ -181,10 +199,10 @@
 		A4A2340A1C5DEB4F00B798E5 /* Images for control view */ = {
 			isa = PBXGroup;
 			children = (
+				A4AA24F21C76C9AD0006F130 /* color_bar_control@2x.png */,
+				A4AA24F31C76C9AD0006F130 /* color_bar_control@3x.png */,
 				A454E3DD1C756A420002A436 /* color_bar_warm_cold@2x.png */,
 				A454E3DE1C756A420002A436 /* color_bar_warm_cold@3x.png */,
-				A4FF0F681C72F90800845CB3 /* color_bar_control@2x.png */,
-				A4FF0F691C72F90800845CB3 /* color_bar_control@3x.png */,
 				A4FF0F6A1C72F90800845CB3 /* color_bar@2x.png */,
 				A4FF0F6B1C72F90800845CB3 /* color_bar@3x.png */,
 				A4A234111C5DF0D300B798E5 /* thumb_white@2x.png */,
@@ -261,13 +279,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4A234191C5DF13300B798E5 /* SRLampTypeControlWBCell.xib in Resources */,
-				A4FF0F6D1C72F90800845CB3 /* color_bar_control@3x.png in Resources */,
+				A454E3EB1C75C6D00002A436 /* SRLampTypeControlWarmColdcell.xib in Resources */,
 				A4A234141C5DF0D300B798E5 /* thumb_white@3x.png in Resources */,
 				A4A233ED1C5DB11B00B798E5 /* SRLampTypeControlColorCell.xib in Resources */,
 				A4A233F81C5DE9B700B798E5 /* color_green.png in Resources */,
 				A4FF0F6E1C72F90800845CB3 /* color_bar@2x.png in Resources */,
 				A4A233DA1C5DA0F300B798E5 /* LaunchScreen.storyboard in Resources */,
 				A4A233F91C5DE9B700B798E5 /* color_red.png in Resources */,
+				A4AA24F41C76C9AD0006F130 /* color_bar_control@2x.png in Resources */,
 				A454E3DF1C756A420002A436 /* color_bar_warm_cold@2x.png in Resources */,
 				A4A234071C5DEB4200B798E5 /* thumb_green@3x.png in Resources */,
 				A454E3E01C756A420002A436 /* color_bar_warm_cold@3x.png in Resources */,
@@ -275,8 +294,8 @@
 				A4FF0F671C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.xib in Resources */,
 				A4A233D71C5DA0F300B798E5 /* Assets.xcassets in Resources */,
 				A4A234131C5DF0D300B798E5 /* thumb_white@2x.png in Resources */,
+				A4AA24F51C76C9AD0006F130 /* color_bar_control@3x.png in Resources */,
 				A4A233F71C5DE9B700B798E5 /* color_blue.png in Resources */,
-				A4FF0F6C1C72F90800845CB3 /* color_bar_control@2x.png in Resources */,
 				A4A2340D1C5DEBE400B798E5 /* thumb_red@2x.png in Resources */,
 				A4A234041C5DEB4200B798E5 /* thumb_blue@2x.png in Resources */,
 				A4FF0F6F1C72F90800845CB3 /* color_bar@3x.png in Resources */,
@@ -296,10 +315,13 @@
 			files = (
 				A454E3E61C7573500002A436 /* ColorPickerImageView.m in Sources */,
 				A4A233EC1C5DB11B00B798E5 /* SRLampTypeControlColorCell.m in Sources */,
+				A454E3EA1C75C6D00002A436 /* SRLampTypeControlWarmColdcell.m in Sources */,
 				A4C200891C74541C00EA4C5B /* SRColorGradient.m in Sources */,
+				A454E3EE1C75C7010002A436 /* SRWarmColdSlider.m in Sources */,
 				A4A233D21C5DA0F300B798E5 /* ViewController.m in Sources */,
 				A4A234181C5DF13300B798E5 /* SRLampTypeControlWBCell.m in Sources */,
 				A4FF0F751C72FA6500845CB3 /* SRColorSlider.m in Sources */,
+				A4AA24F11C76A63F0006F130 /* SRWarmColdView.m in Sources */,
 				A4A233CF1C5DA0F300B798E5 /* AppDelegate.m in Sources */,
 				A4A233CC1C5DA0F300B798E5 /* main.m in Sources */,
 				A4A233E81C5DB02500B798E5 /* SRLampColor.m in Sources */,

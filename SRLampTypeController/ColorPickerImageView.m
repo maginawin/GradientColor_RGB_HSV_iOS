@@ -26,7 +26,6 @@
 //	UITouch* touch = [touches anyObject];
 //	CGPoint point = [touch locationInView:self]; //where image was tapped
 //	self.lastColor = [self getPixelColorAtLocation:point]; 
-//	NSLog(@"color %@",lastColor);
 //}
 
 
@@ -57,7 +56,7 @@
 		int red = data[offset+1]; 
 		int green = data[offset+2]; 
 		int blue = data[offset+3]; 
-		NSLog(@"offset: %i colors: RGB A %i %i %i  %i",offset,red,green,blue,alpha);
+
 		color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
 	}
 	
@@ -131,6 +130,17 @@
 	return context;
 }
 
-
+- (UIColor *)colorFromHueValue:(CGFloat)hue {
+    NSLog(@"hue %.2f", hue);
+    
+    UIColor *result = [UIColor whiteColor];
+    
+    CGFloat width = CGRectGetWidth(self.bounds);
+    CGFloat x = hue * width * [UIScreen mainScreen].scale / 360.f;
+    
+    result = [self getPixelColorAtLocation:CGPointMake(x, CGRectGetHeight(self.bounds) / 2)];
+    
+    return result;
+}
 
 @end
