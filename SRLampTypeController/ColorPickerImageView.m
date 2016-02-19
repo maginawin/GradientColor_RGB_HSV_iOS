@@ -131,7 +131,7 @@
 }
 
 - (UIColor *)colorFromHueValue:(CGFloat)hue {
-    NSLog(@"hue %.2f", hue);
+//    NSLog(@"hue %.2f", hue);
     
     UIColor *result = [UIColor whiteColor];
     

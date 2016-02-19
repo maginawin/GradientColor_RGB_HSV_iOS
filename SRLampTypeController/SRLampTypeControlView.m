@@ -214,7 +214,6 @@
                     }
                     
                     cell.lampColor = _lampColor;                    
-                    
                     cell.delegate = self;
                     
                     return cell;
@@ -250,7 +249,6 @@
                     }
                     
                     cell.lampColor = _lampColor;
-                    
                     cell.delegate = self;
                     
                     return cell;
@@ -305,39 +303,51 @@
     }
     // 下部分控制区域
     else if (indexPath.section == 1) {
-        SRLampTypeControlColorCell *cell = [tableView dequeueReusableCellWithIdentifier:SRLampTypeControlColorCellIdentifier];
-        if (!cell) {
-            cell = [SRLampTypeControlColorCell lampTypeControlColorCell];
+        if (!_lampColor.isStart.boolValue) {
+            SRLampTypeControlColorCell *cell = [tableView dequeueReusableCellWithIdentifier:SRLampTypeControlColorCellIdentifier];
+            if (!cell) {
+                cell = [SRLampTypeControlColorCell lampTypeControlColorCell];
+            }
+            
+            // 给红绿黄赋值
+            SRLampTypeControlColorCellType type = indexPath.row % 3;
+            cell.cellType = type;
+            
+            SRColor *tempColor = _lampColor.color;
+            SRColorRGB tempRGB = tempColor.RGB;
+            // 改颜色
+            switch (type) {
+                case SRLampTypeControlColorCellTypeRed: {
+                    cell.value = @(tempRGB.red);
+                    
+                    break;
+                }
+                case SRLampTypeControlColorCellTypeGreen: {
+                    cell.value = @(tempRGB.green);
+                    
+                    break;
+                }
+                case SRLampTypeControlColorCellTypeBlue: {
+                    cell.value = @(tempRGB.blue);
+                    
+                    break;
+                }
+            }
+            
+            cell.delegate = self;
+            
+            return cell;
+        } else {
+            SRColorBallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kColorBallTableViewCellIdentifier];
+            
+            if (!cell) {
+                cell = [SRColorBallTableViewCell colorBallTableViewCell];
+            }
+            
+            cell.colors = @[[UIColor redColor], [UIColor blueColor], [UIColor greenColor], [UIColor clearColor]];
+            
+            return cell;
         }
-        
-        // 给红绿黄赋值
-        SRLampTypeControlColorCellType type = indexPath.row % 3;
-        cell.cellType = type;
-        
-        SRColor *tempColor = _lampColor.color;
-        SRColorRGB tempRGB = tempColor.RGB;
-        // 改颜色
-        switch (type) {
-            case SRLampTypeControlColorCellTypeRed: {
-                cell.value = @(tempRGB.red);
-            
-                break;
-            }
-            case SRLampTypeControlColorCellTypeGreen: {
-                cell.value = @(tempRGB.green);
-            
-                break;
-            }
-            case SRLampTypeControlColorCellTypeBlue: {
-                cell.value = @(tempRGB.blue);
-            
-                break;
-            }
-        }
-        
-        cell.delegate = self;
-        
-        return cell;
     }
     // 防返回空值
     else {
@@ -358,26 +368,49 @@
 #pragma mark - SRLampTypeControlMulticolourCellDelegate
 
 - (void)lampTypeControlMulticolourCell:(SRLampTypeControlMulticolourCell *)cell didIsStartChanged:(BOOL)isStart {
-
+    NSNumber *isStartNumber = @(isStart);
+    
+    _lampColor.isStart = isStartNumber;
+    
+    // 更新 Section1 的布局
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:1];
+    [_controlTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationLeft];
+    
+    // 告之外界，StartButton.isSelected has changed.
+    if ([_delegate respondsToSelector:@selector(lampTypeControlView:didLampColorChanged:)]) {
+        [_delegate lampTypeControlView:self didLampColorChanged:_lampColor];
+    }
 }
 
 - (void)lampTypeControlMulticolourCell:(SRLampTypeControlMulticolourCell *)cell didLampColorChanged:(SRLampColor *)lampColor {
     if (lampColor && (_controlViewType == SRLampTypeControlViewTypeRGBW || _controlViewType == SRLampTypeControlViewTypeRGB)) {
         _lampColor.color = lampColor.color.copy;
         
-        // Reload RGB Cells
-        NSIndexPath *indexPath10 = [NSIndexPath indexPathForRow:0 inSection:1];
-        NSIndexPath *indexPath11 = [NSIndexPath indexPathForRow:1 inSection:1];
-        NSIndexPath *indexPath12 = [NSIndexPath indexPathForRow:2 inSection:1];
+        if (!_lampColor.isStart.boolValue) {
+            // Reload RGB Cells
+            NSIndexPath *indexPath10 = [NSIndexPath indexPathForRow:0 inSection:1];
+            NSIndexPath *indexPath11 = [NSIndexPath indexPathForRow:1 inSection:1];
+            NSIndexPath *indexPath12 = [NSIndexPath indexPathForRow:2 inSection:1];
+            
+            SRLampTypeControlColorCell *cell10 = [_controlTableView cellForRowAtIndexPath:indexPath10];
+            SRLampTypeControlColorCell *cell11 = [_controlTableView cellForRowAtIndexPath:indexPath11];
+            SRLampTypeControlColorCell *cell12 = [_controlTableView cellForRowAtIndexPath:indexPath12];
+            
+            if (cell10) {
+                cell10.value = @(_lampColor.color.RGB.red);
+            }
+            
+            if (cell11) {
+                cell11.value = @(_lampColor.color.RGB.green);
+            }
+            
+            if (cell12) {
+                cell12.value = @(_lampColor.color.RGB.blue);
+            }
+
+        }
         
-        SRLampTypeControlColorCell *cell10 = [_controlTableView cellForRowAtIndexPath:indexPath10];
-        SRLampTypeControlColorCell *cell11 = [_controlTableView cellForRowAtIndexPath:indexPath11];
-        SRLampTypeControlColorCell *cell12 = [_controlTableView cellForRowAtIndexPath:indexPath12];
-        
-        cell10.value = @(_lampColor.color.RGB.red);
-        cell11.value = @(_lampColor.color.RGB.green);
-        cell12.value = @(_lampColor.color.RGB.blue);
-    }
+        }
     
     _colorShowView.backgroundColor = _lampColor.color.color;
     
@@ -494,15 +527,25 @@
                 NSIndexPath *indexPath12 = [NSIndexPath indexPathForRow:2 inSection:1];
                 
                 SRLampTypeControlMulticolourCell *cell00 = [_controlTableView cellForRowAtIndexPath:indexPath00];
-                cell00.lampColor = _lampColor;
+                if (cell00) {
+                    cell00.lampColor = _lampColor;
+                }
                 
                 SRLampTypeControlColorCell *cell10 = [_controlTableView cellForRowAtIndexPath:indexPath10];
                 SRLampTypeControlColorCell *cell11 = [_controlTableView cellForRowAtIndexPath:indexPath11];
                 SRLampTypeControlColorCell *cell12 = [_controlTableView cellForRowAtIndexPath:indexPath12];
                 
-                cell10.value = @(_lampColor.color.RGB.red);
-                cell11.value = @(_lampColor.color.RGB.green);
-                cell12.value = @(_lampColor.color.RGB.blue);
+                if (cell10) {
+                    cell10.value = @(_lampColor.color.RGB.red);
+                }
+                
+                if (cell11) {
+                    cell11.value = @(_lampColor.color.RGB.green);
+                }
+                
+                if (cell12) {
+                    cell12.value = @(_lampColor.color.RGB.blue);
+                }
             }
             
             break;

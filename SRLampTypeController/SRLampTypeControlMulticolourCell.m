@@ -53,6 +53,19 @@ const CGFloat MulticolourCellTrailingMarginWarmCold = 24.f;
         _lampColor = lampColor;
         
         _colorSlider.color = _lampColor.color;
+        _startButton.selected = _lampColor.isStart.boolValue;
+    }
+}
+
+- (IBAction)startButtonClicked:(id)sender {
+    BOOL isSelected = [sender isSelected];
+    
+    [sender setSelected:!isSelected];
+    
+    _lampColor.isStart = @(!isSelected);
+    
+    if ([_delegate respondsToSelector:@selector(lampTypeControlMulticolourCell:didIsStartChanged:)]) {
+        [_delegate lampTypeControlMulticolourCell:self didIsStartChanged:_lampColor.isStart.boolValue];
     }
 }
 
@@ -74,9 +87,9 @@ const CGFloat MulticolourCellTrailingMarginWarmCold = 24.f;
 #pragma mark - SRColorSliderDelegate
 
 - (void)colorSlider:(SRColorSlider *)slider didColorChanged:(SRColor *)color {
+    _lampColor.color = color.copy;
+    
     if ([_delegate respondsToSelector:@selector(lampTypeControlMulticolourCell:didLampColorChanged:)]) {
-        
-        _lampColor.color = color.copy;
         
         [_delegate lampTypeControlMulticolourCell:self didLampColorChanged:_lampColor];
     }

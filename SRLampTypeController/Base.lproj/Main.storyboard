@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIY-JC-1Dt" customClass="SRLampTypeControlView">
-                                <rect key="frame" x="0.0" y="208" width="320" height="360"/>
+                                <rect key="frame" x="0.0" y="328" width="320" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="360" id="Lft-Fu-Dzm"/>
+                                    <constraint firstAttribute="height" constant="240" id="Lft-Fu-Dzm"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zz-SB-0lr">
@@ -68,6 +68,10 @@
                                     <action selector="typeChangedClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U4j-oI-VpI"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0j-CQ-xac" customClass="SRColorBall">
+                                <rect key="frame" x="40" y="65" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

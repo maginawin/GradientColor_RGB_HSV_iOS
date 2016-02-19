@@ -16,6 +16,7 @@
         self.color = [[SRColor alloc] init];
         self.white = @(100);
         self.jumpState = @(NO);
+        self.isStart = @(NO);
     }
     return self;
 }

@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5B-zz-ojO" customClass="SRColorSlider">
-                        <rect key="frame" x="16" y="15" width="234" height="13"/>
+                        <rect key="frame" x="16" y="15" width="242" height="13"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="Xrd-zr-BVh"/>
@@ -28,12 +28,19 @@
                             <constraint firstAttribute="height" constant="30" id="1PT-XW-8OJ"/>
                             <constraint firstAttribute="width" constant="30" id="heP-Vb-BSP"/>
                         </constraints>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal" backgroundImage="menu_start.png"/>
+                        <state key="selected" backgroundImage="menu_stop.png"/>
+                        <state key="highlighted" backgroundImage="menu_stop.png"/>
+                        <connections>
+                            <action selector="startButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iUY-Rm-XxK"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="UzW-YD-270" secondAttribute="trailing" constant="24" id="680-8Z-90n"/>
                     <constraint firstItem="UzW-YD-270" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GBO-Mh-rem"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="g5B-zz-ojO" secondAttribute="trailing" constant="62" id="QzB-Z8-lU7"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="g5B-zz-ojO" secondAttribute="trailing" constant="54" id="QzB-Z8-lU7"/>
                     <constraint firstItem="g5B-zz-ojO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cSU-xd-Byi"/>
                     <constraint firstItem="g5B-zz-ojO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wNm-Tm-boe"/>
                 </constraints>
@@ -46,4 +53,8 @@
             <point key="canvasLocation" x="380" y="383"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="menu_start.png" width="26" height="26"/>
+        <image name="menu_stop.png" width="26" height="26"/>
+    </resources>
 </document>

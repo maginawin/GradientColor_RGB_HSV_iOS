@@ -44,13 +44,13 @@
     switch (cellType) {
         case SRLampTypeControlWBCellWhite: {
             // White's image setting
-            _cellImageView.image = [UIImage imageNamed:@""];
+            _cellImageView.image = [UIImage imageNamed:@"white_icon"];
         
             break;
         }
         case SRLampTypeControlWBCellBrightness: {
             // Brightness's image setting
-            _cellImageView.image = [UIImage imageNamed:@""];
+            _cellImageView.image = [UIImage imageNamed:@"brightness_icon"];
         
             break;
         }
@@ -61,7 +61,7 @@
     if (value && value.integerValue <= _maxValue && value.integerValue >= 0) {
         _value = @(value.integerValue);
         
-        _valueLabel.text = _value.stringValue;
+        _valueLabel.text = [NSString stringWithFormat:@"%@%%", _value.stringValue];
         [_valueSlider setValue:_value.integerValue animated:YES];
     }
 }
@@ -85,7 +85,7 @@
     NSUInteger value = slider.value;
     
     _value = @(value);
-    _valueLabel.text = _value.stringValue;
+    _valueLabel.text = [NSString stringWithFormat:@"%@%%", _value.stringValue];
     
     if ([_delegate respondsToSelector:@selector(lampTypeControlWBCell:didValueChanged:)]) {
         [_delegate lampTypeControlWBCell:self didValueChanged:_value];

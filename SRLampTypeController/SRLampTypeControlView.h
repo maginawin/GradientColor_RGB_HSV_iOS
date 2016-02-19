@@ -11,6 +11,7 @@
 #import "SRLampTypeControlWBCell.h"
 #import "SRLampTypeControlWarmColdcell.h"
 #import "SRLampTypeControlMulticolourCell.h"
+#import "SRColorBallTableViewCell.h"
 #import "SRLampColor.h"
 
 @class SRLampTypeControlView;

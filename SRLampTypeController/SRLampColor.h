@@ -25,4 +25,7 @@
 /// bool, is jump switch, default is @(NO)
 @property (strong, nonatomic) NSNumber *jumpState;
 
+/// bool, is start
+@property (strong, nonatomic) NSNumber *isStart;
+
 @end
