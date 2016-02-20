@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SRColorJumpModeTableViewCell.h"
 #import "SRColor.h"
 
 /// 灯的颜色类
@@ -27,5 +28,17 @@
 
 /// bool, is start
 @property (strong, nonatomic) NSNumber *isStart;
+
+/// speed [0, 100], only effective when isStart is @(ON)
+@property (strong, nonatomic) NSNumber *speed;
+
+/// jumpColors, only effective when isStart is @(ON)
+@property (strong, nonatomic) NSArray<UIColor *> *jumpColors;
+
+/// jumpModeType, only effective when isStart is @(ON)
+@property (nonatomic) SRColorJumpModeType jumpModeType;
+
+/// warm cold hue number [0, 360)
+@property (strong, nonatomic) NSNumber *warmColdHueNumber;
 
 @end

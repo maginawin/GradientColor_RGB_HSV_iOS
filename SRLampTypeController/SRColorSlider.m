@@ -33,15 +33,15 @@
     CGFloat hue = color.HSV.hue;
     CGFloat newLeft = hue * (CGRectGetWidth(self.bounds) - 2 * SRColorSliderMargin) / 360.f;
     
-//    NSLog(@"hue %.2f, newleft %.2f", hue, newLeft);
+    NSLog(@"hue %.2f, newleft %.2f", hue, newLeft);
     
     [UIView animateWithDuration:.25f animations:^ {
         _thumbButtonLeftConstraint.constant = newLeft;
     }];
 }
 
-- (void)drawRect:(CGRect)rect {
-    [self setColor:_color];
+- (void)layoutSubviews {
+//    [self setColor:_color];
 }
 
 #pragma mark - ------- Private -------

@@ -45,14 +45,18 @@
 - (IBAction)typeChangedClicked:(id)sender {
     int tag = (int)[sender tag];
     
-    // 切换前随机变个色儿
-    SRLampColor *lampColor = [[SRLampColor alloc] init];
-    CGFloat hue = arc4random_uniform(360);
-    SRColorHSV hsv = lampColor.color.HSV;
-    hsv.hue = hue;
-    lampColor.color.HSV = hsv;
+    if ((tag + 1) == SRLampTypeControlViewTypeCCT) {
+        _controlView.lampColor.warmColdHueNumber = @(_controlView.lampColor.color.HSV.hue);
+    }
     
-    _controlView.lampColor = lampColor;
+    // 切换前随机变个色儿
+//    SRLampColor *lampColor = [[SRLampColor alloc] init];
+//    CGFloat hue = arc4random_uniform(360);
+//    SRColorHSV hsv = lampColor.color.HSV;
+//    hsv.hue = hue;
+//    lampColor.color.HSV = hsv;
+//    
+//    _controlView.lampColor = lampColor;
     
     _controlView.controlViewType = tag + 1;
 }

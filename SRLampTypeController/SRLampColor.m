@@ -17,6 +17,11 @@
         self.white = @(100);
         self.jumpState = @(NO);
         self.isStart = @(NO);
+        
+        self.speed = @(100);
+        self.jumpModeType = SRColorJumpModeTypeFade;
+        self.jumpColors = @[];
+        self.warmColdHueNumber = @(0);
     }
     return self;
 }

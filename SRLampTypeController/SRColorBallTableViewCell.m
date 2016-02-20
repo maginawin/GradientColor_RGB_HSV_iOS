@@ -49,7 +49,7 @@ NSString *const kColorBallTableViewCellIdentifier = @"kColorBallTableViewCellIde
             }
         }
     } else {
-        int max = _colors.count;
+        int max = (int)_colors.count;
         if (max > 5) {
             max = 5;
         }
@@ -66,7 +66,7 @@ NSString *const kColorBallTableViewCellIdentifier = @"kColorBallTableViewCellIde
         
         if (diff > 0) {
             for (int j = 0; j < diff; j++) {
-                int k = j + _colors.count;
+                int k = j + (int)_colors.count;
                 
                 SRColorBall *ball = _colorBalls[k];
                 
@@ -78,11 +78,19 @@ NSString *const kColorBallTableViewCellIdentifier = @"kColorBallTableViewCellIde
     }
 }
 
+- (IBAction)customButtonClicked:(id)sender {
+    if ([_delegate respondsToSelector:@selector(colorBallTableViewCellDidClicked:)]) {
+        [_delegate colorBallTableViewCellDidClicked:self];
+    }
+}
+
 #pragma mark - ------- Private -------
 
 - (void)setupDidInit {
     self.backgroundColor = [UIColor clearColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    self.cellLabel.text = NSLocalizedString(@"color", nil);
     
     _colors = [NSArray array];
 }

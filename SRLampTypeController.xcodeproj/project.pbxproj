@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A44315441C77F6FA00706457 /* SRColorSpeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A44315421C77F6FA00706457 /* SRColorSpeedTableViewCell.m */; };
+		A44315451C77F6FA00706457 /* SRColorSpeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44315431C77F6FA00706457 /* SRColorSpeedTableViewCell.xib */; };
+		A44315491C77FA8600706457 /* SRColorJumpModeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A44315471C77FA8600706457 /* SRColorJumpModeTableViewCell.m */; };
+		A443154A1C77FA8600706457 /* SRColorJumpModeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44315481C77FA8600706457 /* SRColorJumpModeTableViewCell.xib */; };
+		A443154F1C77FEB200706457 /* jump_mode_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A443154B1C77FEB200706457 /* jump_mode_off@2x.png */; };
+		A44315501C77FEB200706457 /* jump_mode_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A443154C1C77FEB200706457 /* jump_mode_off@3x.png */; };
+		A44315511C77FEB200706457 /* jump_mode_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A443154D1C77FEB200706457 /* jump_mode_on@2x.png */; };
+		A44315521C77FEB200706457 /* jump_mode_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A443154E1C77FEB200706457 /* jump_mode_on@3x.png */; };
 		A454E3DF1C756A420002A436 /* color_bar_warm_cold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454E3DD1C756A420002A436 /* color_bar_warm_cold@2x.png */; };
 		A454E3E01C756A420002A436 /* color_bar_warm_cold@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A454E3DE1C756A420002A436 /* color_bar_warm_cold@3x.png */; };
 		A454E3E61C7573500002A436 /* ColorPickerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A454E3E51C7573500002A436 /* ColorPickerImageView.m */; };
@@ -61,6 +69,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A44315411C77F6F900706457 /* SRColorSpeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRColorSpeedTableViewCell.h; sourceTree = "<group>"; };
+		A44315421C77F6FA00706457 /* SRColorSpeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRColorSpeedTableViewCell.m; sourceTree = "<group>"; };
+		A44315431C77F6FA00706457 /* SRColorSpeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRColorSpeedTableViewCell.xib; sourceTree = "<group>"; };
+		A44315461C77FA8600706457 /* SRColorJumpModeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRColorJumpModeTableViewCell.h; sourceTree = "<group>"; };
+		A44315471C77FA8600706457 /* SRColorJumpModeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRColorJumpModeTableViewCell.m; sourceTree = "<group>"; };
+		A44315481C77FA8600706457 /* SRColorJumpModeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRColorJumpModeTableViewCell.xib; sourceTree = "<group>"; };
+		A443154B1C77FEB200706457 /* jump_mode_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jump_mode_off@2x.png"; sourceTree = "<group>"; };
+		A443154C1C77FEB200706457 /* jump_mode_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jump_mode_off@3x.png"; sourceTree = "<group>"; };
+		A443154D1C77FEB200706457 /* jump_mode_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jump_mode_on@2x.png"; sourceTree = "<group>"; };
+		A443154E1C77FEB200706457 /* jump_mode_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jump_mode_on@3x.png"; sourceTree = "<group>"; };
 		A454E3DD1C756A420002A436 /* color_bar_warm_cold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar_warm_cold@2x.png"; sourceTree = "<group>"; };
 		A454E3DE1C756A420002A436 /* color_bar_warm_cold@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color_bar_warm_cold@3x.png"; sourceTree = "<group>"; };
 		A454E3E41C7573500002A436 /* ColorPickerImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerImageView.h; sourceTree = "<group>"; };
@@ -161,6 +179,12 @@
 				A498677E1C77161900E1D7ED /* SRColorBallTableViewCell.h */,
 				A498677F1C77161900E1D7ED /* SRColorBallTableViewCell.m */,
 				A49867801C77161900E1D7ED /* SRColorBallTableViewCell.xib */,
+				A44315411C77F6F900706457 /* SRColorSpeedTableViewCell.h */,
+				A44315421C77F6FA00706457 /* SRColorSpeedTableViewCell.m */,
+				A44315431C77F6FA00706457 /* SRColorSpeedTableViewCell.xib */,
+				A44315461C77FA8600706457 /* SRColorJumpModeTableViewCell.h */,
+				A44315471C77FA8600706457 /* SRColorJumpModeTableViewCell.m */,
+				A44315481C77FA8600706457 /* SRColorJumpModeTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -244,6 +268,10 @@
 		A4A2340A1C5DEB4F00B798E5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A443154B1C77FEB200706457 /* jump_mode_off@2x.png */,
+				A443154C1C77FEB200706457 /* jump_mode_off@3x.png */,
+				A443154D1C77FEB200706457 /* jump_mode_on@2x.png */,
+				A443154E1C77FEB200706457 /* jump_mode_on@3x.png */,
 				A4AA250A1C76F4020006F130 /* white_icon@2x.png */,
 				A4AA250B1C76F4020006F130 /* white_icon@3x.png */,
 				A4AA25061C76EEC50006F130 /* menu_stop@2x.png */,
@@ -333,6 +361,7 @@
 			files = (
 				A4AA24FB1C76EA5E0006F130 /* brightness_icon@3x.png in Resources */,
 				A4A234191C5DF13300B798E5 /* SRLampTypeControlWBCell.xib in Resources */,
+				A443154A1C77FA8600706457 /* SRColorJumpModeTableViewCell.xib in Resources */,
 				A454E3EB1C75C6D00002A436 /* SRLampTypeControlWarmColdcell.xib in Resources */,
 				A4A234141C5DF0D300B798E5 /* thumb_white@3x.png in Resources */,
 				A4A233ED1C5DB11B00B798E5 /* SRLampTypeControlColorCell.xib in Resources */,
@@ -354,14 +383,19 @@
 				A4FF0F671C72EEBA00845CB3 /* SRLampTypeControlMulticolourCell.xib in Resources */,
 				A4A233D71C5DA0F300B798E5 /* Assets.xcassets in Resources */,
 				A4A234131C5DF0D300B798E5 /* thumb_white@2x.png in Resources */,
+				A44315451C77F6FA00706457 /* SRColorSpeedTableViewCell.xib in Resources */,
 				A4AA24F51C76C9AD0006F130 /* color_bar_control@3x.png in Resources */,
 				A4A233F71C5DE9B700B798E5 /* color_blue.png in Resources */,
 				A4AA250C1C76F4020006F130 /* white_icon@2x.png in Resources */,
+				A44315501C77FEB200706457 /* jump_mode_off@3x.png in Resources */,
+				A44315521C77FEB200706457 /* jump_mode_on@3x.png in Resources */,
 				A4A2340D1C5DEBE400B798E5 /* thumb_red@2x.png in Resources */,
 				A4A234041C5DEB4200B798E5 /* thumb_blue@2x.png in Resources */,
 				A4FF0F6F1C72F90800845CB3 /* color_bar@3x.png in Resources */,
 				A4A234051C5DEB4200B798E5 /* thumb_blue@3x.png in Resources */,
+				A443154F1C77FEB200706457 /* jump_mode_off@2x.png in Resources */,
 				A4AA25051C76ECD40006F130 /* menu_start@3x.png in Resources */,
+				A44315511C77FEB200706457 /* jump_mode_on@2x.png in Resources */,
 				A4A233D51C5DA0F300B798E5 /* Main.storyboard in Resources */,
 				A4A2340E1C5DEBE400B798E5 /* thumb_red@3x.png in Resources */,
 				A4A234061C5DEB4200B798E5 /* thumb_green@2x.png in Resources */,
@@ -377,6 +411,7 @@
 			files = (
 				A454E3E61C7573500002A436 /* ColorPickerImageView.m in Sources */,
 				A4A233EC1C5DB11B00B798E5 /* SRLampTypeControlColorCell.m in Sources */,
+				A44315441C77F6FA00706457 /* SRColorSpeedTableViewCell.m in Sources */,
 				A454E3EA1C75C6D00002A436 /* SRLampTypeControlWarmColdcell.m in Sources */,
 				A4C200891C74541C00EA4C5B /* SRColorGradient.m in Sources */,
 				A454E3EE1C75C7010002A436 /* SRWarmColdSlider.m in Sources */,
@@ -387,6 +422,7 @@
 				A4AA24F11C76A63F0006F130 /* SRWarmColdView.m in Sources */,
 				A4A233CF1C5DA0F300B798E5 /* AppDelegate.m in Sources */,
 				A4A233CC1C5DA0F300B798E5 /* main.m in Sources */,
+				A44315491C77FA8600706457 /* SRColorJumpModeTableViewCell.m in Sources */,
 				A4A233E81C5DB02500B798E5 /* SRLampColor.m in Sources */,
 				A49867811C77161900E1D7ED /* SRColorBallTableViewCell.m in Sources */,
 				A4FF0F721C72F9E200845CB3 /* SRColor.m in Sources */,

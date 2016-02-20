@@ -12,6 +12,8 @@
 #import "SRLampTypeControlWarmColdcell.h"
 #import "SRLampTypeControlMulticolourCell.h"
 #import "SRColorBallTableViewCell.h"
+#import "SRColorSpeedTableViewCell.h"
+#import "SRColorJumpModeTableViewCell.h"
 #import "SRLampColor.h"
 
 @class SRLampTypeControlView;
@@ -37,6 +39,8 @@ typedef NS_ENUM(NSInteger, SRLampTypeControlViewType) {
 @optional
 
 - (void)lampTypeControlView:(SRLampTypeControlView *)view didLampColorChanged:(SRLampColor *)lampColor;
+
+- (void)lampTypeControlView:(SRLampTypeControlView *)view didColorBallCellClicked:(SRColorBallTableViewCell *)cell;
 
 ///// Section0 区域改变 lampColor
 //- (void)lampTypeControlView:(SRLampTypeControlView *)view didSliderChanged:(SRLampColor *)lampColor;

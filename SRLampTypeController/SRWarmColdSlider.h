@@ -15,7 +15,7 @@
 
 @optional
 
-- (void)warmColdSlider:(SRColorSlider *)slider didColorChanged:(SRColor *)srColor;
+- (void)warmColdSlider:(SRColorSlider *)slider didColorChanged:(SRColor *)srColor hueChanged:(NSNumber *)hueNumber;
 
 @end
 
@@ -24,5 +24,8 @@
 @property (weak, nonatomic) id<SRWarmColdSliderDelegate> sliderDelegate;
 
 @property (strong, nonatomic) SRWarmColdView *colorPicker;
+
+/// Hue for slider location, [0, 360)
+@property (strong, nonatomic) NSNumber *hueNumber;
 
 @end

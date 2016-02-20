@@ -10,10 +10,25 @@
 
 @implementation SRWarmColdSlider
 
-- (void)setColor:(SRColor *)color {
-    [super setColor:color];
+- (void)setHueNumber:(NSNumber *)hueNumber {
+    if (!hueNumber) {
+        return;
+    }
     
-    self.color.color = [_colorPicker colorFromHue:self.color.HSV.hue];
+    SRColorHSV hsv = self.color.HSV;
+    hsv.hue = hueNumber.floatValue;
+    
+    self.color.HSV = hsv;
+    
+    [super setColor:self.color];
+    
+    self.color.color = [_colorPicker colorFromHue:hueNumber.floatValue];
+    _hueNumber = hueNumber;
+    
+    if ([_sliderDelegate respondsToSelector:@selector(warmColdSlider:didColorChanged:hueChanged:)]) {
+        
+        [_sliderDelegate warmColdSlider:self didColorChanged:self.color hueChanged:_hueNumber];
+    }
 }
 
 - (void)setupDidInit {
@@ -69,9 +84,9 @@
             
             self.color.color = [_colorPicker colorFromHue:self.color.HSV.hue];
             
-            if ([_sliderDelegate respondsToSelector:@selector(warmColdSlider:didColorChanged:)]) {
+            if ([_sliderDelegate respondsToSelector:@selector(warmColdSlider:didColorChanged:hueChanged:)]) {
                 
-                [_sliderDelegate warmColdSlider:self didColorChanged:self.color];
+                [_sliderDelegate warmColdSlider:self didColorChanged:self.color hueChanged:_hueNumber];
             }
             
             [(UIPanGestureRecognizer *)recognizer setTranslation:CGPointZero inView:self];

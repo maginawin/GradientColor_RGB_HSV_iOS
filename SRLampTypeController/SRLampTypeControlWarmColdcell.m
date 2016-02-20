@@ -41,7 +41,7 @@
     if (lampColor) {
         _lampColor = lampColor;
         
-        _warmColdSlider.color = _lampColor.color;
+        _warmColdSlider.hueNumber = _lampColor.warmColdHueNumber;
     }
 }
 
@@ -56,8 +56,9 @@
 
 #pragma mark - SRWarmColdSliderDelegate
 
-- (void)warmColdSlider:(SRColorSlider *)slider didColorChanged:(SRColor *)srColor {
+- (void)warmColdSlider:(SRColorSlider *)slider didColorChanged:(SRColor *)srColor hueChanged:(NSNumber *)hueNumber {
     _lampColor.color = srColor;
+    _lampColor.warmColdHueNumber = hueNumber;
     
     if ([_delegate respondsToSelector:@selector(lampTypeControlWarmColdCell:didChangedLampColor:)]) {
         [_delegate lampTypeControlWarmColdCell:self didChangedLampColor:_lampColor];

@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "SRColorBall.h"
+@class SRColorBallTableViewCell;
 
 extern NSString *const kColorBallTableViewCellIdentifier;
+
+@protocol SRColorBallTableViewCellDelegate <NSObject>
+
+@optional
+
+- (void)colorBallTableViewCellDidClicked:(SRColorBallTableViewCell *)cell;
+
+@end
 
 @interface SRColorBallTableViewCell : UITableViewCell
 
@@ -19,7 +28,8 @@ extern NSString *const kColorBallTableViewCellIdentifier;
 
 @property (strong, nonatomic) NSArray<UIColor *> *colors;
 
-+ (instancetype)colorBallTableViewCell;
+@property (weak, nonatomic) id<SRColorBallTableViewCellDelegate> delegate;
 
++ (instancetype)colorBallTableViewCell;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "SRLampTypeControlView.h"
 
-@interface SRLampTypeControlView () <UITableViewDataSource, UITableViewDelegate, SRLampTypeControlColorCellDelegate, SRLampTypeControlMulticolourCellDelegate, SRLampTypeControlWarmColdCellDelegate, SRLampTypeControlWBCellDelegate>
+@interface SRLampTypeControlView () <UITableViewDataSource, UITableViewDelegate, SRLampTypeControlColorCellDelegate, SRLampTypeControlMulticolourCellDelegate, SRLampTypeControlWarmColdCellDelegate, SRLampTypeControlWBCellDelegate, SRColorBallTableViewCellDelegate, SRColorSpeedTableViewCellDelegate, SRColorJumpModeTableViewCellDelegate>
 
 /// 展示颜色的视图
 @property (strong, nonatomic) UIView *colorShowView;
@@ -77,9 +77,11 @@
 //    // 每次重置颜色
 //    _lampColor = [[SRLampColor alloc] init];
     
-    _controlTableView.scrollEnabled = NO;
+    if (_controlViewType == controlViewType) {
+        return;
+    }
     
-    _controlViewType = controlViewType;
+    _controlTableView.scrollEnabled = NO;
     
     CGFloat contentHeight = CGRectGetHeight(_controlTableView.bounds) - 10;
     
@@ -116,8 +118,11 @@
         _rowHeight = 44;
     }
     
+    _controlViewType = controlViewType;
+    
     [_controlTableView reloadData];
-//    [_controlTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+//    [_controlTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];    
+
     
     if ([_delegate respondsToSelector:@selector(lampTypeControlView:didLampColorChanged:)] && controlViewType != SRLampTypeControlViewTypeCCT) {
         [_delegate lampTypeControlView:self didLampColorChanged:_lampColor];
@@ -252,6 +257,15 @@
                     cell.delegate = self;
                     
                     return cell;
+                } else if (indexPath.row == 1) {
+                    SRLampTypeControlWBCell *cell = [SRLampTypeControlWBCell lampTypeControlWBCell];
+                    
+                    cell.delegate = self;
+                    cell.cellType = SRLampTypeControlWBCellBrightness;
+                    cell.value = @(_lampColor.color.HSV.value * 100);
+                    
+                    return cell;
+
                 }
             
                 break;
@@ -265,7 +279,7 @@
                         cell = [SRLampTypeControlWarmColdcell lampTypeControlWarmColdCell];
                     }
                     cell.lampColor = _lampColor;
-                    
+
                     cell.delegate = self;
                     
                     _colorShowView.backgroundColor = _lampColor.color.color;
@@ -337,16 +351,41 @@
             cell.delegate = self;
             
             return cell;
-        } else {
-            SRColorBallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kColorBallTableViewCellIdentifier];
-            
-            if (!cell) {
-                cell = [SRColorBallTableViewCell colorBallTableViewCell];
+        } else { // RGBW or RGB 模式下 start 后的显示
+            if (indexPath.row == 0) { // Color
+                SRColorBallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kColorBallTableViewCellIdentifier];
+                
+                if (!cell) {
+                    cell = [SRColorBallTableViewCell colorBallTableViewCell];
+                }
+                
+                cell.colors = _lampColor.jumpColors;
+                cell.delegate = self;
+                
+                return cell;
+            } else if (indexPath.row == 1) { // Speed
+                SRColorSpeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kColorSpeedTableViewCellIdentifier];
+                
+                if (!cell) {
+                    cell = [SRColorSpeedTableViewCell colorSpeedTableViewCell];
+                }
+                
+                cell.speedSlider.value = _lampColor.speed.floatValue;
+                cell.delegate = self;
+                
+                return cell;
+            } else if (indexPath.row == 2) { // Jump mode
+                SRColorJumpModeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kColorJumpModeCellIdentifier];
+                
+                if (!cell) {
+                    cell = [SRColorJumpModeTableViewCell colorJumpModeTableViewCell];
+                }
+                
+                cell.jumpModeType = _lampColor.jumpModeType;
+                cell.delegate = self;
+                
+                return cell;
             }
-            
-            cell.colors = @[[UIColor redColor], [UIColor blueColor], [UIColor greenColor], [UIColor clearColor]];
-            
-            return cell;
         }
     }
     // 防返回空值
@@ -407,10 +446,10 @@
             if (cell12) {
                 cell12.value = @(_lampColor.color.RGB.blue);
             }
-
+            
         }
         
-        }
+    }
     
     _colorShowView.backgroundColor = _lampColor.color.color;
     
@@ -519,7 +558,7 @@
             // Reload ColorShow
             _colorShowView.backgroundColor = _lampColor.color.color;
             
-            if (_controlViewType == SRLampTypeControlViewTypeRGBW) {
+            if (_controlViewType == SRLampTypeControlViewTypeRGBW || _controlViewType == SRLampTypeControlViewTypeRGB) {
                 // Reload RGB Cells
                 NSIndexPath *indexPath00 = [NSIndexPath indexPathForRow:0 inSection:0];
                 NSIndexPath *indexPath10 = [NSIndexPath indexPathForRow:0 inSection:1];
@@ -552,6 +591,30 @@
         }
     }    
     
+    if ([_delegate respondsToSelector:@selector(lampTypeControlView:didLampColorChanged:)]) {
+        [_delegate lampTypeControlView:self didLampColorChanged:_lampColor];
+    }
+}
+
+#pragma mark - RColorBallTableViewCellDelegate, SRColorSpeedTableViewCellDelegate, SRColorJumpModeTableViewCellDelegate
+
+- (void)colorBallTableViewCellDidClicked:(SRColorBallTableViewCell *)cell {
+    if ([_delegate respondsToSelector:@selector(lampTypeControlView:didColorBallCellClicked:)]) {
+        [_delegate lampTypeControlView:self didColorBallCellClicked:cell];
+    }
+}
+
+- (void)colorSpeedTableViewCell:(SRColorSpeedTableViewCell *)cell didSpeedValueChanged:(CGFloat)value {
+    _lampColor.speed = @(value);
+    
+    if ([_delegate respondsToSelector:@selector(lampTypeControlView:didLampColorChanged:)]) {
+        [_delegate lampTypeControlView:self didLampColorChanged:_lampColor];
+    }
+}
+
+- (void)colorJumpModeTableViewCell:(SRColorJumpModeTableViewCell *)cell didChangedType:(SRColorJumpModeType)type {    
+    _lampColor.jumpModeType = type;
+
     if ([_delegate respondsToSelector:@selector(lampTypeControlView:didLampColorChanged:)]) {
         [_delegate lampTypeControlView:self didLampColorChanged:_lampColor];
     }
