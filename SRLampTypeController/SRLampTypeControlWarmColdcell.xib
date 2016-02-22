@@ -29,7 +29,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="warmColdSlider" destination="nPl-rl-Ip8" id="A14-nm-eD1"/>
+                <outlet property="warmColdSlider" destination="nPl-rl-Ip8" id="4Kn-fb-bKY"/>
             </connections>
         </tableViewCell>
     </objects>

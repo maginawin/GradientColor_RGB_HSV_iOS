@@ -37,7 +37,7 @@
     if (lampColor) {
         _lampColor = lampColor;
     }
-    
+
     [_controlTableView reloadData];
 }
 
@@ -45,6 +45,7 @@
 
 - (void)setupDidInit {
     self.layer.masksToBounds = NO;
+    self.backgroundColor = [UIColor clearColor];
     
     // Init Parameters
     _controlViewType = SRLampTypeControlViewTypeNONE;
@@ -85,6 +86,10 @@
     
     CGFloat contentHeight = CGRectGetHeight(_controlTableView.bounds) - 10;
     
+    SRLampTypeControlViewType originType = _controlViewType;
+    
+    _controlViewType = controlViewType;
+    
     switch (controlViewType) {
         case SRLampTypeControlViewTypeNONE: {
         _rowHeight = 0;
@@ -118,11 +123,25 @@
         _rowHeight = 44;
     }
     
-    _controlViewType = controlViewType;
-    
-    [_controlTableView reloadData];
-//    [_controlTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];    
+    if (originType <= 0 || originType > 4) {
+        [_controlTableView reloadData];
+    } else {
+        [UIView transitionWithView:_controlTableView duration:0.4f options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionTransitionFlipFromLeft animations: ^ {
+            [_controlTableView reloadData];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
 
+//    CATransition *anim = [CATransition animation];
+//    anim.duration = 0.25;
+//    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    anim.type = kCATransition;
+//    anim.subtype = kCATransitionFromLeft;
+//    [_controlTableView reloadData];
+//    [_controlTableView.layer addAnimation:anim forKey:@"reload"];
+    
+//    [_controlTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     
     if ([_delegate respondsToSelector:@selector(lampTypeControlView:didLampColorChanged:)] && controlViewType != SRLampTypeControlViewTypeCCT) {
         [_delegate lampTypeControlView:self didLampColorChanged:_lampColor];
@@ -272,21 +291,31 @@
             }
                 
             case SRLampTypeControlViewTypeCCT: {
-                if (indexPath.row == 1) {
+                if (indexPath.row == 1) { // WarmColdColorSlider
                     SRLampTypeControlWarmColdcell *cell = nil;
                     
                     if (!cell) {
                         cell = [SRLampTypeControlWarmColdcell lampTypeControlWarmColdCell];
                     }
+                    
                     cell.lampColor = _lampColor;
 
-                    cell.delegate = self;
+                    cell.delegate = self;                    
                     
                     _colorShowView.backgroundColor = _lampColor.color.color;
                     
                     if ([_delegate respondsToSelector:@selector(lampTypeControlView:didLampColorChanged:)]) {
                         [_delegate lampTypeControlView:self didLampColorChanged:_lampColor];
                     }
+                    
+                    return cell;
+                } else if (indexPath.row == 2) { // Brightness (value) Slider
+                    SRLampTypeControlWBCell * cell = [SRLampTypeControlWBCell lampTypeControlWBCell];
+                    
+                    cell.cellType = SRLampTypeControlWBCellBrightness;
+                    cell.value = @(_lampColor.color.HSV.value * 100);
+                    
+                    cell.delegate = self;
                     
                     return cell;
                 }
@@ -530,8 +559,11 @@
 
 #pragma mark - SRLampTypeControlWarmColdCellDelegate
 
-- (void)lampTypeControlWarmColdCell:(SRLampTypeControlWarmColdcell *)cell didChangedLampColor:(SRLampColor *)lampColor {
+- (void)lampTypeControlWarmColdCell:(SRLampTypeControlWarmColdcell *)cell didChangedLampColor:(SRLampColor *)lampColor warmColdNumber:(NSNumber *)valueNumber {
     self.colorShowView.backgroundColor = lampColor.color.color;
+    
+    _lampColor = lampColor;
+    _lampColor.warmColdHueNumber = valueNumber;
     
     if ([_delegate respondsToSelector:@selector(lampTypeControlView:didLampColorChanged:)]) {
         [_delegate lampTypeControlView:self didLampColorChanged:_lampColor];
@@ -570,20 +602,37 @@
                     cell00.lampColor = _lampColor;
                 }
                 
-                SRLampTypeControlColorCell *cell10 = [_controlTableView cellForRowAtIndexPath:indexPath10];
-                SRLampTypeControlColorCell *cell11 = [_controlTableView cellForRowAtIndexPath:indexPath11];
-                SRLampTypeControlColorCell *cell12 = [_controlTableView cellForRowAtIndexPath:indexPath12];
-                
-                if (cell10) {
-                    cell10.value = @(_lampColor.color.RGB.red);
+                if (!_lampColor.isStart.boolValue) {
+                    SRLampTypeControlColorCell *cell10 = [_controlTableView cellForRowAtIndexPath:indexPath10];
+                    SRLampTypeControlColorCell *cell11 = [_controlTableView cellForRowAtIndexPath:indexPath11];
+                    SRLampTypeControlColorCell *cell12 = [_controlTableView cellForRowAtIndexPath:indexPath12];
+                    
+                    if (cell10) {
+                        cell10.value = @(_lampColor.color.RGB.red);
+                    }
+                    
+                    if (cell11) {
+                        cell11.value = @(_lampColor.color.RGB.green);
+                    }
+                    
+                    if (cell12) {
+                        cell12.value = @(_lampColor.color.RGB.blue);
+                    }
                 }
                 
-                if (cell11) {
-                    cell11.value = @(_lampColor.color.RGB.green);
-                }
+            } else if (_controlViewType == SRLampTypeControlViewTypeCCT) {
+                NSIndexPath *indexPath01 = [NSIndexPath indexPathForItem:1 inSection:0];
                 
-                if (cell12) {
-                    cell12.value = @(_lampColor.color.RGB.blue);
+                SRLampTypeControlWarmColdcell *cell = [_controlTableView cellForRowAtIndexPath:indexPath01];
+                
+                if (cell) {
+                    SRColorHSV hsv = _lampColor.color.HSV;
+                    hsv.value = value.integerValue / 100.f;
+                    
+                    _lampColor.color.HSV = hsv;
+                    
+//                    cell.hueNumber = @(hsv.value);
+                    cell.lampColor = _lampColor;
                 }
             }
             

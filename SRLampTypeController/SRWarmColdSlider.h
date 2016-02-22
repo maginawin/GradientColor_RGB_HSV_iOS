@@ -9,17 +9,17 @@
 #import "SRColorSlider.h"
 #import "SRWarmColdView.h"
 
-@class SRColorSlider;
+@class SRWarmColdSlider;
 
 @protocol SRWarmColdSliderDelegate <NSObject>
 
 @optional
 
-- (void)warmColdSlider:(SRColorSlider *)slider didColorChanged:(SRColor *)srColor hueChanged:(NSNumber *)hueNumber;
+- (void)warmColdSlider:(SRWarmColdSlider *)slider didColorChanged:(UIColor *)color hueChanged:(NSNumber *)hueNumber;
 
 @end
 
-@interface SRWarmColdSlider : SRColorSlider
+@interface SRWarmColdSlider : UIView
 
 @property (weak, nonatomic) id<SRWarmColdSliderDelegate> sliderDelegate;
 
@@ -27,5 +27,13 @@
 
 /// Hue for slider location, [0, 360)
 @property (strong, nonatomic) NSNumber *hueNumber;
+
+@property (strong, nonatomic) NSNumber *valueNumber;
+
+/// 拔动按钮
+@property (strong, nonatomic) ColorPickerImageView *thumbButton;
+
+/// 拔动按钮与左边的约束, default is 0 and Max is (self.width - SRColorSliderMargin * 2)
+@property (strong, nonatomic) NSLayoutConstraint *thumbButtonLeftConstraint;
 
 @end

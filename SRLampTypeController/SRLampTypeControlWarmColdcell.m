@@ -41,7 +41,27 @@
     if (lampColor) {
         _lampColor = lampColor;
         
-        _warmColdSlider.hueNumber = _lampColor.warmColdHueNumber;
+        _warmColdSlider.valueNumber = @(_lampColor.color.HSV.value);
+        NSLog(@"%@", _warmColdSlider.valueNumber);
+        
+        _lampColor.color.color = [_warmColdSlider.colorPicker colorFromHue:_lampColor.color.HSV.hue];
+        
+        SRColorHSV hsv = _lampColor.color.HSV;
+        hsv.value = _warmColdSlider.valueNumber.floatValue;
+        
+        NSLog(@"%@", _warmColdSlider.valueNumber);
+        
+        _lampColor.color.HSV = hsv;
+        
+        [self setHueNumber:_lampColor.warmColdHueNumber];
+    }
+}
+
+- (void)setHueNumber:(NSNumber *)hueNumber {
+    if (hueNumber) {
+        _hueNumber = hueNumber;
+        
+        _warmColdSlider.hueNumber = hueNumber;
     }
 }
 
@@ -56,12 +76,12 @@
 
 #pragma mark - SRWarmColdSliderDelegate
 
-- (void)warmColdSlider:(SRColorSlider *)slider didColorChanged:(SRColor *)srColor hueChanged:(NSNumber *)hueNumber {
-    _lampColor.color = srColor;
-    _lampColor.warmColdHueNumber = hueNumber;
+- (void)warmColdSlider:(SRWarmColdSlider *)slider didColorChanged:(UIColor *)color hueChanged:(NSNumber *)hueNumber {
+    _lampColor.color.color = color.copy;
+    _lampColor.warmColdHueNumber = hueNumber;    
     
-    if ([_delegate respondsToSelector:@selector(lampTypeControlWarmColdCell:didChangedLampColor:)]) {
-        [_delegate lampTypeControlWarmColdCell:self didChangedLampColor:_lampColor];
+    if ([_delegate respondsToSelector:@selector(lampTypeControlWarmColdCell:didChangedLampColor:warmColdNumber:)]) {
+        [_delegate lampTypeControlWarmColdCell:self didChangedLampColor:_lampColor warmColdNumber:hueNumber];
     }
 }
 

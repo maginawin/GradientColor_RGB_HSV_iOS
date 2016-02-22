@@ -68,8 +68,8 @@
                                     <action selector="typeChangedClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U4j-oI-VpI"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0j-CQ-xac" customClass="SRColorBall">
-                                <rect key="frame" x="40" y="65" width="240" height="128"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0j-CQ-xac" customClass="SRWarmColdSlider">
+                                <rect key="frame" x="40" y="65" width="240" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -91,6 +91,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="controlView" destination="HIY-JC-1Dt" id="e8m-ob-Ywg"/>
+                        <outlet property="warmColdSlider" destination="m0j-CQ-xac" id="fyE-sp-i9M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

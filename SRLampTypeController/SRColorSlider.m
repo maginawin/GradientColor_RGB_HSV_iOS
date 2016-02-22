@@ -41,7 +41,7 @@
 }
 
 - (void)layoutSubviews {
-//    [self setColor:_color];
+    [self setColor:_color];
 }
 
 #pragma mark - ------- Private -------

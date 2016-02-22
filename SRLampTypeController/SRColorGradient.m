@@ -56,11 +56,10 @@
     }
     
     // 需要重绘
-    [self setNeedsDisplay];
+    [self setupGradientLayer];
 }
 
-- (void)drawRect:(CGRect)rect {
-    
+- (void)layoutSublayersOfLayer:(CALayer *)layer {
     [self setupGradientLayer];
 }
 

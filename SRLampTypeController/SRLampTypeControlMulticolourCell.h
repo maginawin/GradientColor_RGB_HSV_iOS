@@ -32,7 +32,7 @@
 @property (weak, nonatomic) id<SRLampTypeControlMulticolourCellDelegate> delegate;
 
 /// Is start button is selected.
-@property (nonatomic) BOOL isStart;
+//@property (nonatomic) BOOL isStart;
 
 /// Only use Red, Green, Blue properties.
 @property (strong, nonatomic) SRLampColor *lampColor;

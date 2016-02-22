@@ -68,8 +68,6 @@
 	return color;
 }
 
-
-
 - (CGContextRef) createARGBBitmapContextFromImage:(CGImageRef) inImage {
 	
 	CGContextRef    context = NULL;

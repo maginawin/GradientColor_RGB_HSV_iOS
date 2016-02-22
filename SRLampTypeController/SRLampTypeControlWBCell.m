@@ -82,7 +82,11 @@
 }
 
 - (void)valueSliderValueChanged:(UISlider *)slider {
-    NSUInteger value = slider.value;
+    NSUInteger value = round(slider.value);
+    
+    if (value > 100) {
+        value = 100;
+    }
     
     _value = @(value);
     _valueLabel.text = [NSString stringWithFormat:@"%@%%", _value.stringValue];

@@ -7,6 +7,7 @@
 //
 
 #import "SRWarmColdView.h"
+#import "SRColor.h"
 
 const CGFloat R_DIFF_LEFT = 0.10555556;
 const CGFloat G_DIFF_LEFT = 0.83888889;
@@ -23,6 +24,8 @@ const CGFloat B_DIFF_RIGHT = 0.3111111;
 
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
 
+@property (strong, nonatomic) CALayer *blackLayer;
+
 @end
 
 @implementation SRWarmColdView
@@ -37,6 +40,15 @@ const CGFloat B_DIFF_RIGHT = 0.3111111;
 
 - (void)awakeFromNib {
     [self setupDidInit];
+}
+
+- (void)setValue:(NSNumber *)value {
+    if (value) {
+        _value = value;
+        
+        // re draw
+        _blackLayer.opacity = 1 - value.floatValue;
+    }
 }
 
 - (UIColor *)colorFromHue:(CGFloat)hue {
@@ -70,33 +82,51 @@ const CGFloat B_DIFF_RIGHT = 0.3111111;
         color = [UIColor colorWithRed:r green:g blue:b alpha:1.f];
     }
     
+    color = [self color:color udpateValue:_value];
+    
     return color;
-}
-
-- (void)drawRect:(CGRect)rect {
-    _gradientLayer.frame = self.bounds;
 }
 
 - (void)layoutSublayersOfLayer:(CALayer *)layer {
     _gradientLayer.frame = self.bounds;
+    _blackLayer.frame = self.bounds;
 }
 
 #pragma mark - ------- Private -------
 
 - (void)setupDidInit {
-    _warmColor = [UIColor colorWithRed:236/255.f green:104/255.f blue:0 alpha:1.f];
-    _whiteColor = [UIColor whiteColor];
-    _coldColor = [UIColor colorWithRed:115/255.f green:198/255.f blue:199/255.f alpha:1];
+    if (!_value) {
+        _value = @(100);
+    }
+    
+    if (!_warmColor) {
+        _warmColor = [UIColor colorWithRed:236/255.f green:104/255.f blue:0 alpha:1.f];
+    }
+    if (!_whiteColor) {
+        _whiteColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+    }
+    if (!_coldColor) {
+        _coldColor = [UIColor colorWithRed:115/255.f green:198/255.f blue:199/255.f alpha:1];
+    }
     
     if (!_gradientLayer) {
         _gradientLayer = [CAGradientLayer layer];
         [self.layer addSublayer:_gradientLayer];
         
-        _gradientLayer.colors = @[(id)_warmColor.CGColor, (id)_whiteColor.CGColor, (id)_coldColor.CGColor];
         _gradientLayer.locations = @[@0, @0.5, @1];
         _gradientLayer.startPoint = CGPointMake(0, 0.5);
         _gradientLayer.endPoint = CGPointMake(1, 0.5);
     }
+    
+    if (!_blackLayer) {
+        _blackLayer = [CALayer layer];
+        [self.layer insertSublayer:_blackLayer above:_gradientLayer];
+        
+        _blackLayer.backgroundColor = [UIColor blackColor].CGColor;
+        _blackLayer.opacity = 1.f;
+    }
+    
+    _gradientLayer.colors = @[(id)_warmColor.CGColor, (id)_whiteColor.CGColor, (id)_coldColor.CGColor];
 }
 
 - (CGFloat *)compsFromColor:(UIColor *)color {
@@ -114,6 +144,27 @@ const CGFloat B_DIFF_RIGHT = 0.3111111;
     }
     
     return comps;
+}
+
+/// value [0, 1]
+- (UIColor *)color:(UIColor *)aColor udpateValue:(NSNumber *)value {
+    UIColor *result = [UIColor clearColor];
+    
+    if (aColor && value) {
+        CGFloat valueFloat = value.floatValue;
+        
+        SRColor *srColor = [[SRColor alloc] init];
+        srColor.color = aColor;
+        
+        SRColorHSV hsv = srColor.HSV;
+        hsv.value = valueFloat;
+        
+        srColor.HSV = hsv;
+        
+        result = srColor.color;
+    }
+    
+    return result;
 }
 
 @end

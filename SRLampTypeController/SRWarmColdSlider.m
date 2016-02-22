@@ -10,24 +10,42 @@
 
 @implementation SRWarmColdSlider
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupDidInit];
+    }
+    return self;
+}
+
+- (void)awakeFromNib {
+    [self setupDidInit];
+}
+
 - (void)setHueNumber:(NSNumber *)hueNumber {
     if (!hueNumber) {
         return;
     }
     
-    SRColorHSV hsv = self.color.HSV;
-    hsv.hue = hueNumber.floatValue;
-    
-    self.color.HSV = hsv;
-    
-    [super setColor:self.color];
-    
-    self.color.color = [_colorPicker colorFromHue:hueNumber.floatValue];
     _hueNumber = hueNumber;
     
-    if ([_sliderDelegate respondsToSelector:@selector(warmColdSlider:didColorChanged:hueChanged:)]) {
+    CGFloat newLeft = (_hueNumber.floatValue * CGRectGetWidth(self.bounds) / 360.f);
+    CGFloat maxLeft = CGRectGetWidth(self.bounds) - 2 * SRColorSliderMargin;
+    
+    if (newLeft < 0) {
+        newLeft = 0;
+    } else if (newLeft > maxLeft) {
+        newLeft = maxLeft;
+    }
+    
+    self.thumbButtonLeftConstraint.constant = newLeft;
+}
+
+- (void)setValueNumber:(NSNumber *)valueNumber {
+    if (valueNumber) {
+        _valueNumber = valueNumber;
         
-        [_sliderDelegate warmColdSlider:self didColorChanged:self.color hueChanged:_hueNumber];
+        [_colorPicker setValue:valueNumber];
     }
 }
 
@@ -43,10 +61,37 @@
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_colorPicker attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_colorPicker attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
     
-    [super setupDidInit];    
-    
-    self.colorImageView.hidden = YES;
+    [self setupDidInit1];
 }
+
+- (void)layoutSubviews {
+    [self setHueNumber:_hueNumber];
+    [self setValueNumber:_valueNumber];
+}
+
+- (void)setupDidInit1 {
+    self.backgroundColor = [UIColor clearColor];
+    
+    // Thumb Button
+    _thumbButton = [[ColorPickerImageView alloc] init];
+    _thumbButton.translatesAutoresizingMaskIntoConstraints = NO;
+    _thumbButton.userInteractionEnabled = YES;
+    [self addSubview:_thumbButton];
+    [_thumbButton setImage:[UIImage imageNamed:@"color_bar_control"]];
+    
+    // Constraints
+    _thumbButtonLeftConstraint = [NSLayoutConstraint constraintWithItem:_thumbButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1. constant:0];
+    [self addConstraint:_thumbButtonLeftConstraint];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_thumbButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1. constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_thumbButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1. constant:44]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_thumbButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1. constant:44]];
+    // Gesture
+    //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleThumbButtonGestureRecognizer:)];
+    //    [_thumbButton addGestureRecognizer:tap];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleThumbButtonGestureRecognizer:)];
+    [_thumbButton addGestureRecognizer:pan];
+}
+
 
 - (void)handleThumbButtonGestureRecognizer:(UIGestureRecognizer *)recognizer {
     switch (recognizer.state) {
@@ -55,38 +100,23 @@
             break;
         }
         case UIGestureRecognizerStateChanged: {
-            
             CGPoint translation = [(UIPanGestureRecognizer *)recognizer translationInView:self];
             
-            CGFloat newLeft = self.thumbButtonLeftConstraint.constant + translation.x;
             CGFloat maxLeft = CGRectGetWidth(self.bounds) - 2 * SRColorSliderMargin;
             
-            if (newLeft < 0) {
-                newLeft = 0;
-            } else if (newLeft > maxLeft) {
-                newLeft = maxLeft;
-            }
-            
-            self.thumbButtonLeftConstraint.constant = newLeft;
-            
-            CGFloat hue = (newLeft * 360 / maxLeft);
+            CGFloat hue = _hueNumber.floatValue + translation.x * 360.f / maxLeft;
             if (hue < 0) {
                 hue = 0;
             } else if (hue > 359.99) {
                 hue = 359.99;
             }
-            SRColorHSV hsv;
-            hsv.hue = hue;
-            hsv.saturation = self.colorImageView.saturation;
-            hsv.value = self.colorImageView.value;
             
-            self.color.HSV = hsv;
-            
-            self.color.color = [_colorPicker colorFromHue:self.color.HSV.hue];
+            [self setHueNumber:@(hue)];
             
             if ([_sliderDelegate respondsToSelector:@selector(warmColdSlider:didColorChanged:hueChanged:)]) {
                 
-                [_sliderDelegate warmColdSlider:self didColorChanged:self.color hueChanged:_hueNumber];
+                UIColor *color = [_colorPicker colorFromHue:_hueNumber.floatValue];
+                [_sliderDelegate warmColdSlider:self didColorChanged:color hueChanged:@(hue)];
             }
             
             [(UIPanGestureRecognizer *)recognizer setTranslation:CGPointZero inView:self];

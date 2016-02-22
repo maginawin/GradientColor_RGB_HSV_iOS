@@ -17,7 +17,7 @@
 
 @optional
 
-- (void)lampTypeControlWarmColdCell:(SRLampTypeControlWarmColdcell *)cell didChangedLampColor:(SRLampColor *)lampColor;
+- (void)lampTypeControlWarmColdCell:(SRLampTypeControlWarmColdcell *)cell didChangedLampColor:(SRLampColor *)lampColor warmColdNumber:(NSNumber *)valueNumber;
 
 @end
 
@@ -25,8 +25,9 @@
 
 @property (weak, nonatomic) IBOutlet SRWarmColdSlider *warmColdSlider;
 
-/// Only use Red, Green, Blue properties.
+/// Only use HSV.value
 @property (strong, nonatomic) SRLampColor *lampColor;
+@property (strong, nonatomic) NSNumber *hueNumber;
 
 @property (weak, nonatomic) id<SRLampTypeControlWarmColdCellDelegate> delegate;
 
