@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A407F2AE1C7C0F64006C2DE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A407F2AD1C7C0F64006C2DE4 /* Localizable.strings */; };
 		A44315441C77F6FA00706457 /* SRColorSpeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A44315421C77F6FA00706457 /* SRColorSpeedTableViewCell.m */; };
 		A44315451C77F6FA00706457 /* SRColorSpeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44315431C77F6FA00706457 /* SRColorSpeedTableViewCell.xib */; };
 		A44315491C77FA8600706457 /* SRColorJumpModeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A44315471C77FA8600706457 /* SRColorJumpModeTableViewCell.m */; };
@@ -69,6 +70,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A407F2AD1C7C0F64006C2DE4 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A44315411C77F6F900706457 /* SRColorSpeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRColorSpeedTableViewCell.h; sourceTree = "<group>"; };
 		A44315421C77F6FA00706457 /* SRColorSpeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRColorSpeedTableViewCell.m; sourceTree = "<group>"; };
 		A44315431C77F6FA00706457 /* SRColorSpeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRColorSpeedTableViewCell.xib; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				A4A233D61C5DA0F300B798E5 /* Assets.xcassets */,
 				A4A233D81C5DA0F300B798E5 /* LaunchScreen.storyboard */,
 				A4A233DB1C5DA0F300B798E5 /* Info.plist */,
+				A407F2AD1C7C0F64006C2DE4 /* Localizable.strings */,
 				A4A233CA1C5DA0F300B798E5 /* Supporting Files */,
 			);
 			path = SRLampTypeController;
@@ -391,6 +394,7 @@
 				A44315521C77FEB200706457 /* jump_mode_on@3x.png in Resources */,
 				A4A2340D1C5DEBE400B798E5 /* thumb_red@2x.png in Resources */,
 				A4A234041C5DEB4200B798E5 /* thumb_blue@2x.png in Resources */,
+				A407F2AE1C7C0F64006C2DE4 /* Localizable.strings in Resources */,
 				A4FF0F6F1C72F90800845CB3 /* color_bar@3x.png in Resources */,
 				A4A234051C5DEB4200B798E5 /* thumb_blue@3x.png in Resources */,
 				A443154F1C77FEB200706457 /* jump_mode_off@2x.png in Resources */,

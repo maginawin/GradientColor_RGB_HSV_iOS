@@ -30,6 +30,8 @@ extern NSString *const kColorBallTableViewCellIdentifier;
 
 @property (weak, nonatomic) id<SRColorBallTableViewCellDelegate> delegate;
 
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+
 + (instancetype)colorBallTableViewCell;
 
 @end

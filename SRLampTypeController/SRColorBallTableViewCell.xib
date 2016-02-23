@@ -27,6 +27,12 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iwd-hp-37K">
                         <rect key="frame" x="66" y="2" width="234" height="40"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select colors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="992-jR-Ub2">
+                                <rect key="frame" x="73" y="11" width="89" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEc-HZ-SJl" customClass="SRColorBall">
                                 <rect key="frame" x="0.0" y="8" width="24" height="24"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,6 +82,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="992-jR-Ub2" firstAttribute="centerX" secondItem="Iwd-hp-37K" secondAttribute="centerX" id="0V8-6v-8Ic"/>
                             <constraint firstItem="bVK-4K-Bhf" firstAttribute="centerY" secondItem="Iwd-hp-37K" secondAttribute="centerY" id="CqJ-Nh-Uah"/>
                             <constraint firstAttribute="height" constant="40" id="E5Z-Mq-acn"/>
                             <constraint firstItem="MEc-HZ-SJl" firstAttribute="leading" secondItem="Iwd-hp-37K" secondAttribute="leading" id="FuK-8I-dOe"/>
@@ -86,6 +93,7 @@
                             <constraint firstItem="Fvc-wm-wcT" firstAttribute="centerY" secondItem="Iwd-hp-37K" secondAttribute="centerY" id="gHG-mD-Iw7"/>
                             <constraint firstItem="dUc-7i-KrM" firstAttribute="leading" secondItem="Fvc-wm-wcT" secondAttribute="trailing" constant="29" id="irV-63-lR2"/>
                             <constraint firstAttribute="trailing" secondItem="IR5-6z-DmX" secondAttribute="trailing" id="qE6-cW-QFI"/>
+                            <constraint firstItem="992-jR-Ub2" firstAttribute="centerY" secondItem="Iwd-hp-37K" secondAttribute="centerY" id="rwx-le-Qtd"/>
                             <constraint firstItem="tMT-bz-mac" firstAttribute="leading" secondItem="bVK-4K-Bhf" secondAttribute="trailing" constant="29" id="sQH-8o-tNo"/>
                             <constraint firstItem="tMT-bz-mac" firstAttribute="centerY" secondItem="Iwd-hp-37K" secondAttribute="centerY" id="w4d-e9-adh"/>
                             <constraint firstItem="IR5-6z-DmX" firstAttribute="top" secondItem="Iwd-hp-37K" secondAttribute="top" constant="5" id="x4m-SX-mfw"/>
@@ -104,12 +112,14 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="cellLabel" destination="6ZM-vb-8Zi" id="AYA-M4-vTH"/>
+                <outlet property="messageLabel" destination="992-jR-Ub2" id="lHf-sA-MYQ"/>
                 <outletCollection property="colorBalls" destination="MEc-HZ-SJl" id="FOd-jf-BuY"/>
                 <outletCollection property="colorBalls" destination="Fvc-wm-wcT" id="OQi-84-59e"/>
                 <outletCollection property="colorBalls" destination="dUc-7i-KrM" id="63z-Qc-Zyz"/>
                 <outletCollection property="colorBalls" destination="bVK-4K-Bhf" id="adb-6G-FoL"/>
                 <outletCollection property="colorBalls" destination="tMT-bz-mac" id="k38-mW-ISr"/>
             </connections>
+            <point key="canvasLocation" x="73" y="388"/>
         </tableViewCell>
     </objects>
 </document>

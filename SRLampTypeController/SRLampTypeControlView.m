@@ -476,6 +476,20 @@
                 cell12.value = @(_lampColor.color.RGB.blue);
             }
             
+        } else { // When colour has changed, turn isStart NO.
+            cell.startButton.selected = NO;
+            NSNumber *isStartNumber = @(NO);
+            
+            _lampColor.isStart = isStartNumber;
+            
+            // 更新 Section1 的布局
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:1];
+            [_controlTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationLeft];
+            
+            SRLampTypeControlMulticolourCell *cell = [_controlTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            if (cell) {
+                cell.startButton.selected = NO;
+            }
         }
         
     }
@@ -577,6 +591,21 @@
     switch (cell.cellType) {
         case SRLampTypeControlWBCellWhite: {
             _lampColor.white = value;
+            
+            if (_lampColor.isStart.boolValue) {
+                NSNumber *isStartNumber = @(NO);
+                
+                _lampColor.isStart = isStartNumber;
+                
+                // 更新 Section1 的布局
+                NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:1];
+                [_controlTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationLeft];
+                
+                SRLampTypeControlMulticolourCell *cell = [_controlTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                if (cell) {
+                    cell.startButton.selected = NO;
+                }
+            }
         
             break;
         }
@@ -617,6 +646,21 @@
                     
                     if (cell12) {
                         cell12.value = @(_lampColor.color.RGB.blue);
+                    }
+                } else {
+                    if (_lampColor.isStart.boolValue) {
+                        NSNumber *isStartNumber = @(NO);
+                        
+                        _lampColor.isStart = isStartNumber;
+                        
+                        // 更新 Section1 的布局
+                        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:1];
+                        [_controlTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationLeft];
+                        
+                        SRLampTypeControlMulticolourCell *cell = [_controlTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                        if (cell) {
+                            cell.startButton.selected = NO;
+                        }
                     }
                 }
                 

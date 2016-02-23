@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  SRLampTypeController
+
+  Created by wangwendong on 16/2/23.
+  Copyright © 2016年 sunricher. All rights reserved.
+*/
+"selectColor" = "Select color";
+"jump0" = "Jump";
+"jump1" = "Flash";
+"jump2" = "Fade";
+"jump3" = "Strobe";
+"color" = "Color";
+"speed" = "Speed";
