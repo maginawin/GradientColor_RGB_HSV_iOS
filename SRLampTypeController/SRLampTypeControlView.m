@@ -254,7 +254,7 @@
                     
                     cell.delegate = self;
                     cell.cellType = SRLampTypeControlWBCellBrightness;
-                    cell.value = @(_lampColor.color.HSV.value * 100);
+                    cell.value = @(round(_lampColor.color.HSV.value * 100));
                     
                     return cell;
                 }
@@ -281,7 +281,7 @@
                     
                     cell.delegate = self;
                     cell.cellType = SRLampTypeControlWBCellBrightness;
-                    cell.value = @(_lampColor.color.HSV.value * 100);
+                    cell.value = @(round(_lampColor.color.HSV.value * 100));
                     
                     return cell;
 
@@ -313,7 +313,7 @@
                     SRLampTypeControlWBCell * cell = [SRLampTypeControlWBCell lampTypeControlWBCell];
                     
                     cell.cellType = SRLampTypeControlWBCellBrightness;
-                    cell.value = @(_lampColor.color.HSV.value * 100);
+                    cell.value = @(round(_lampColor.color.HSV.value * 100));
                     
                     cell.delegate = self;
                     
